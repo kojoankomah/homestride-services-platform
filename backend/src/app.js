@@ -5,6 +5,12 @@ const { rateLimit } = require("express-rate-limit");
 const authRoutes = require("./routes/authRoutes");
 const serviceRoutes = require("./routes/serviceRoutes");
 const addressRoutes = require("./routes/addressRoutes");
+const requestRoutes = require("./routes/requestRoutes");
+const technicianRoutes = require("./routes/technicianRoutes");
+
+
+
+
 
 const app = express();
 
@@ -57,8 +63,13 @@ app.get("/api/health", (request, response) => {
 });
 
 app.use("/api/services", serviceRoutes);
-
 app.use("/api/addresses", addressRoutes);
+app.use("/api/requests", requestRoutes);
+app.use("/api/technicians", technicianRoutes);
+
+
+
+
 
 app.use((request, response) => {
   response.status(404).json({
