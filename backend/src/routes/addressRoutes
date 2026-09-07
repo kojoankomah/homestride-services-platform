@@ -1,0 +1,22 @@
+const express = require("express");
+
+const {
+  createAddress,
+  getMyAddresses
+} = require("../controllers/addressController");
+
+const authenticate = require("../middleware/authMiddleware");
+const authorizeRoles = require("../middleware/roleMiddleware");
+const validateAddress = require("../validators/addressValidator");
+
+const router = express.Router();
+
+router.use(
+  authenticate,
+  authorizeRoles("customer")
+);
+
+router.get("/", getMyAddresses);
+router.post("/", validateAddress, createAddress);
+
+module.exports = router;
