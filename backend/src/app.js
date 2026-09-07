@@ -44,6 +44,9 @@ app.use(express.urlencoded({ extended: true, limit: "1mb" }));
 app.use("/api", apiLimiter);
 app.use("/api/auth", authRoutes);
 
+const userRoutes = require("./routes/userRoutes");
+app.use("/api/users", userRoutes);
+
 app.get("/api/health", (request, response) => {
   response.status(200).json({
     success: true,
