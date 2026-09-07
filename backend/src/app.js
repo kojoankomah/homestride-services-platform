@@ -3,6 +3,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const { rateLimit } = require("express-rate-limit");
 const authRoutes = require("./routes/authRoutes");
+const serviceRoutes = require("./routes/serviceRoutes");
 
 const app = express();
 
@@ -54,6 +55,8 @@ app.get("/api/health", (request, response) => {
   });
 });
 
+app.use("/api/services", serviceRoutes);
+
 app.use((request, response) => {
   response.status(404).json({
     success: false,
@@ -69,5 +72,6 @@ app.use((error, request, response, next) => {
     message: "An unexpected server error occurred."
   });
 });
+
 
 module.exports = app;
