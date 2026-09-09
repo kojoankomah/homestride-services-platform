@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Create an Account | HomeStride Services</title>
+
+  <meta
+    name="description"
+    content="Create a HomeStride customer account to request and track reliable home services."
+  >
+
+  <link
+    rel="stylesheet"
+    href="../assets/css/style.css"
+  >
+
+  <script
+    src="../assets/js/api.js"
+    defer
+  ></script>
+
+  <script
+    src="../assets/js/register.js"
+    defer
+  ></script>
+</head>
+
+<body class="auth-page">
+  <a class="skip-link" href="#mainContent">
+    Skip to main content
+  </a>
+
+  <header class="auth-header">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true">H</span>
+
+      <span>
+        <strong>HomeStride</strong>
+        <small>Reliable care. Right at home.</small>
+      </span>
+    </a>
+
+    <p>
+      Already registered?
+      <a href="login.html">Sign in</a>
+    </p>
+  </header>
+
+  <main id="mainContent" class="auth-layout">
+    <section class="auth-introduction">
+      <div>
+        <p class="eyebrow">Customer account</p>
+
+        <h1>
+          Household support, organized in one place.
+        </h1>
+
+        <p>
+          Request trusted home services, follow each job’s
+          progress and keep your service history together.
+        </p>
+      </div>
+
+      <ul class="auth-benefits">
+        <li>
+          <strong>Seven essential services</strong>
+          <span>
+            From plumbing and electrical work to cleaning
+            and appliance repairs.
+          </span>
+        </li>
+
+        <li>
+          <strong>Clear job updates</strong>
+          <span>
+            Track your request from submission through
+            completion.
+          </span>
+        </li>
+
+        <li>
+          <strong>Local service context</strong>
+          <span>
+            Designed around homes and communities in Ghana.
+          </span>
+        </li>
+      </ul>
+    </section>
+
+    <section
+      class="auth-form-section"
+      aria-labelledby="registerTitle"
+    >
+      <div class="auth-form-heading">
+        <p class="eyebrow">Get started</p>
+        <h2 id="registerTitle">Create your account</h2>
+        <p>
+          Enter your details to begin requesting services.
+        </p>
+      </div>
+
+      <form id="registerForm" class="auth-form" novalidate>
+        <div class="form-field">
+          <label for="fullName">Full name</label>
+
+          <input
+            type="text"
+            id="fullName"
+            name="fullName"
+            autocomplete="name"
+            required
+          >
+
+          <small
+            class="field-error"
+            id="fullNameError"
+          ></small>
+        </div>
+
+        <div class="form-field">
+          <label for="email">Email address</label>
+
+          <input
+            type="email"
+            id="email"
+            name="email"
+            autocomplete="email"
+            required
+          >
+
+          <small
+            class="field-error"
+            id="emailError"
+          ></small>
+        </div>
+
+        <div class="form-field">
+          <label for="phone">Telephone number</label>
+
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            autocomplete="tel"
+            placeholder="+233"
+            required
+          >
+
+          <small
+            class="field-error"
+            id="phoneError"
+          ></small>
+        </div>
+
+        <div class="form-field">
+          <label for="password">Password</label>
+
+          <input
+            type="password"
+            id="password"
+            name="password"
+            autocomplete="new-password"
+            aria-describedby="passwordHint passwordError"
+            required
+          >
+
+          <small id="passwordHint" class="field-hint">
+            Use at least 8 characters, including a letter
+            and number.
+          </small>
+
+          <small
+            class="field-error"
+            id="passwordError"
+          ></small>
+        </div>
+
+        <div class="form-field">
+          <label for="confirmPassword">
+            Confirm password
+          </label>
+
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            autocomplete="new-password"
+            required
+          >
+
+          <small
+            class="field-error"
+            id="confirmPasswordError"
+          ></small>
+        </div>
+
+        <button
+          class="button button-primary"
+          type="submit"
+        >
+          Create Customer Account
+        </button>
+
+        <p
+          class="form-message"
+          id="formMessage"
+          role="status"
+          aria-live="polite"
+        ></p>
+      </form>
+
+      <p class="auth-switch">
+        Already have an account?
+        <a href="login.html">Sign in to HomeStride</a>
+      </p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Sign In | HomeStride Services</title>
+
+  <meta
+    name="description"
+    content="Sign in to manage HomeStride service requests, assignments and job updates."
+  >
+
+  <link
+    rel="stylesheet"
+    href="../assets/css/style.css"
+  >
+
+  <script
+    src="../assets/js/api.js"
+    defer
+  ></script>
+
+  <script
+    src="../assets/js/login.js"
+    defer
+  ></script>
+</head>
+
+<body class="auth-page">
+  <a class="skip-link" href="#mainContent">
+    Skip to main content
+  </a>
+
+  <header class="auth-header">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true">H</span>
+
+      <span>
+        <strong>HomeStride</strong>
+        <small>Reliable care. Right at home.</small>
+      </span>
+    </a>
+
+    <p>
+      New customer?
+      <a href="register.html">Create an account</a>
+    </p>
+  </header>
+
+  <main id="mainContent" class="auth-layout">
+    <section class="auth-introduction">
+      <div>
+        <p class="eyebrow">Welcome back</p>
+
+        <h1>
+          Continue managing work around your home.
+        </h1>
+
+        <p>
+          Sign in to follow service requests, technician
+          assignments and job progress.
+        </p>
+      </div>
+
+      <ul class="auth-benefits">
+        <li>
+          <strong>Customers</strong>
+          <span>
+            Request services and track each job.
+          </span>
+        </li>
+
+        <li>
+          <strong>Technicians</strong>
+          <span>
+            View assignments and update job progress.
+          </span>
+        </li>
+
+        <li>
+          <strong>Administrators</strong>
+          <span>
+            Coordinate requests and field teams.
+          </span>
+        </li>
+      </ul>
+    </section>
+
+    <section
+      class="auth-form-section"
+      aria-labelledby="loginTitle"
+    >
+      <div class="auth-form-heading">
+        <p class="eyebrow">Account access</p>
+        <h2 id="loginTitle">Sign in to HomeStride</h2>
+        <p>
+          Enter the email and password for your account.
+        </p>
+      </div>
+
+      <form id="loginForm" class="auth-form" novalidate>
+        <div class="form-field">
+          <label for="email">Email address</label>
+
+          <input
+            type="email"
+            id="email"
+            name="email"
+            autocomplete="email"
+            required
+          >
+
+          <small
+            class="field-error"
+            id="emailError"
+          ></small>
+        </div>
+
+        <div class="form-field">
+          <label for="password">Password</label>
+
+          <input
+            type="password"
+            id="password"
+            name="password"
+            autocomplete="current-password"
+            required
+          >
+
+          <small
+            class="field-error"
+            id="passwordError"
+          ></small>
+        </div>
+
+        <button
+          class="button button-primary"
+          type="submit"
+        >
+          Sign In
+        </button>
+
+        <p
+          class="form-message"
+          id="formMessage"
+          role="status"
+          aria-live="polite"
+        ></p>
+      </form>
+
+      <p class="auth-switch">
+        Don’t have a customer account?
+        <a href="register.html">Create one now</a>
+      </p>
+    </section>
+  </main>
+</body>
+</html>
