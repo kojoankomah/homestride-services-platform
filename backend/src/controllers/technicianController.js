@@ -184,6 +184,68 @@ async function createTechnician(
   }
 }
 
+async function getTechnicians(request, response, next) {
+  try {
+    const result = await pool.query(
+      `
+        SELECT
+          users.id,
+          users.full_name,
+          users.email,
+          users.phone,
+          users.is_active,
+          technician_profiles.employee_code,
+          technician_profiles.specialization,
+          technician_profiles.availability_status,
+          COALESCE(
+            json_agg(
+              json_build_object(
+                'id', services.id,
+                'name', services.name
+              )
+              ORDER BY services.name
+            ) FILTER (WHERE services.id IS NOT NULL),
+            '[]'
+          ) AS skills
+        FROM users
+        INNER JOIN technician_profiles
+          ON technician_profiles.user_id = users.id
+        LEFT JOIN technician_skills
+          ON technician_skills.technician_id = users.id
+        LEFT JOIN services
+          ON services.id = technician_skills.service_id
+        WHERE
+          users.role = 'technician'
+          AND users.is_active = TRUE
+        GROUP BY
+          users.id,
+          technician_profiles.user_id
+        ORDER BY users.full_name ASC
+      `
+    );
+
+    response.status(200).json({
+      success: true,
+      count: result.rows.length,
+      technicians: result.rows.map((technician) => ({
+        id: technician.id,
+        fullName: technician.full_name,
+        email: technician.email,
+        phone: technician.phone,
+        employeeCode: technician.employee_code,
+        specialization: technician.specialization,
+        availabilityStatus:
+          technician.availability_status,
+        isActive: technician.is_active,
+        skills: technician.skills
+      }))
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
-  createTechnician
+  createTechnician,
+  getTechnicians
 };

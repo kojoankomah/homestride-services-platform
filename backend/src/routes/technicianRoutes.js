@@ -1,7 +1,8 @@
 const express = require("express");
 
 const {
-  createTechnician
+  createTechnician,
+  getTechnicians
 } = require("../controllers/technicianController");
 
 const authenticate = require("../middleware/authMiddleware");
@@ -11,6 +12,13 @@ const validateTechnician = require(
 );
 
 const router = express.Router();
+
+router.get(
+  "/",
+  authenticate,
+  authorizeRoles("admin"),
+  getTechnicians
+);
 
 router.post(
   "/",
