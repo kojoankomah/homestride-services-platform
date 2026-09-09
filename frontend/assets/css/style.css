@@ -1806,3 +1806,229 @@ a {
 
 
 
+/*************** Admin dashboard *************************/
+
+.admin-filters {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: var(--radius-small);
+  background: var(--cream);
+  padding: 1rem;
+  grid-template-columns: minmax(0, 1fr) 220px;
+}
+
+.admin-request-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.admin-request-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-medium);
+  background: #fcfdfc;
+  padding: clamp(1.2rem, 3vw, 1.8rem);
+}
+
+.admin-request-card h3 {
+  margin: 0;
+  color: var(--forest-dark);
+  font-size: 1.2rem;
+}
+
+.admin-request-details {
+  display: grid;
+  gap: 1rem;
+  margin: 1.3rem 0;
+  border-block: 1px solid var(--border);
+  padding-block: 1.2rem;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.admin-request-details div {
+  min-width: 0;
+}
+
+.admin-request-details dt {
+  margin-bottom: 0.2rem;
+  color: var(--slate);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.admin-request-details dd {
+  overflow-wrap: anywhere;
+  margin: 0;
+  color: var(--charcoal);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.admin-request-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.3rem;
+}
+
+.admin-request-footer > span {
+  color: var(--slate);
+  font-size: 0.68rem;
+}
+
+.admin-request-footer .button {
+  min-height: 44px;
+  font-size: 0.7rem;
+}
+
+.technicians-panel {
+  margin-top: 1.5rem;
+}
+
+.admin-technician-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.admin-technician-card {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-medium);
+  background: #fcfdfc;
+  padding: 1.3rem;
+}
+
+.technician-card-heading {
+  display: grid;
+  align-items: center;
+  gap: 0.8rem;
+  grid-template-columns: 46px minmax(0, 1fr);
+}
+
+.technician-avatar {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--forest);
+  color: var(--white);
+  font-size: 0.76rem;
+  font-weight: 900;
+}
+
+.technician-card-heading h3 {
+  overflow: hidden;
+  margin: 0;
+  color: var(--forest-dark);
+  font-size: 0.92rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.technician-card-heading p {
+  margin: 0.2rem 0 0;
+  color: var(--slate);
+  font-size: 0.65rem;
+}
+
+.availability-badge {
+  width: fit-content;
+  border-radius: 999px;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.62rem;
+  font-weight: 800;
+}
+
+.availability-available {
+  background: #dff1e4;
+  color: #22653a;
+}
+
+.availability-assigned {
+  background: #e4edf8;
+  color: #29577f;
+}
+
+.availability-unavailable {
+  background: #f4e3e3;
+  color: #8d3232;
+}
+
+.technician-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.technician-skills span {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--white);
+  padding: 0.25rem 0.55rem;
+  color: var(--forest);
+  font-size: 0.62rem;
+  font-weight: 700;
+}
+
+.technician-contact {
+  display: grid;
+  gap: 0.25rem;
+  border-top: 1px solid var(--border);
+  padding-top: 0.9rem;
+}
+
+.technician-contact a {
+  overflow-wrap: anywhere;
+  color: var(--slate);
+  font-size: 0.68rem;
+}
+
+.technician-contact a:hover {
+  color: var(--gold-dark);
+}
+
+@media (max-width: 1200px) {
+  .admin-request-details {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .admin-technician-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .admin-filters {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-request-details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .admin-technician-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .admin-request-details {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-request-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .admin-request-footer .button {
+    width: 100%;
+  }
+}
