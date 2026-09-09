@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Technician Dashboard | HomeStride</title>
+
+  <meta
+    name="description"
+    content="View HomeStride technician assignments and update job progress."
+  >
+
+  <link
+    rel="stylesheet"
+    href="../assets/css/style.css"
+  >
+
+  <script
+    src="../assets/js/api.js"
+    defer
+  ></script>
+
+  <script
+    src="../assets/js/main.js"
+    defer
+  ></script>
+
+  <script
+    src="../assets/js/technician-dashboard.js"
+    defer
+  ></script>
+</head>
+
+<body
+  class="dashboard-page is-auth-checking"
+  data-required-role="technician"
+>
+  <a class="skip-link" href="#mainContent">
+    Skip to main content
+  </a>
+
+  <div class="dashboard-shell">
+    <aside
+      class="dashboard-sidebar"
+      data-dashboard-navigation
+    >
+      <a class="brand dashboard-brand" href="../index.html">
+        <span class="brand-mark" aria-hidden="true">H</span>
+
+        <span>
+          <strong>HomeStride</strong>
+          <small>Technician Portal</small>
+        </span>
+      </a>
+
+      <nav
+        class="dashboard-navigation"
+        aria-label="Technician navigation"
+      >
+        <p>Workspace</p>
+
+        <a class="is-active" href="technician.html">
+          <span aria-hidden="true">01</span>
+          Assigned Jobs
+        </a>
+
+        <a href="../pages/services.html">
+          <span aria-hidden="true">02</span>
+          Service Catalogue
+        </a>
+      </nav>
+
+      <div class="sidebar-account">
+        <span class="account-avatar" aria-hidden="true">
+          T
+        </span>
+
+        <div>
+          <strong data-user-name>Technician</strong>
+          <span data-user-role>Technician</span>
+        </div>
+
+        <button
+          type="button"
+          class="text-button"
+          data-logout
+        >
+          Sign out
+        </button>
+      </div>
+    </aside>
+
+    <div class="dashboard-content">
+      <header class="dashboard-topbar">
+        <button
+          type="button"
+          class="navigation-toggle"
+          data-navigation-toggle
+          aria-expanded="false"
+          aria-label="Open dashboard navigation"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div>
+          <p>Technician portal</p>
+          <strong>Field-service assignments</strong>
+        </div>
+
+        <button
+          class="button button-secondary"
+          id="refreshJobs"
+          type="button"
+        >
+          Refresh Jobs
+        </button>
+      </header>
+
+      <main id="mainContent" class="dashboard-main">
+        <p
+          class="page-message"
+          id="pageMessage"
+          role="status"
+          aria-live="polite"
+        ></p>
+
+        <section class="dashboard-welcome">
+          <div>
+            <p class="eyebrow">Field-service workspace</p>
+
+            <h1>
+              Welcome,
+              <span data-user-name>Technician</span>.
+            </h1>
+
+            <p>
+              Review your assigned jobs, contact customers
+              and keep each request’s progress up to date.
+            </p>
+          </div>
+        </section>
+
+        <section
+          class="dashboard-statistics"
+          aria-label="Job statistics"
+        >
+          <article>
+            <span>All assignments</span>
+            <strong id="allJobCount">0</strong>
+            <small>Your complete assigned workload</small>
+          </article>
+
+          <article>
+            <span>Ready to start</span>
+            <strong id="assignedJobCount">0</strong>
+            <small>Jobs currently assigned to you</small>
+          </article>
+
+          <article>
+            <span>In progress</span>
+            <strong id="progressJobCount">0</strong>
+            <small>Services currently underway</small>
+          </article>
+
+          <article>
+            <span>Completed</span>
+            <strong id="completedJobCount">0</strong>
+            <small>Jobs successfully completed</small>
+          </article>
+        </section>
+
+        <section class="dashboard-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Work schedule</p>
+              <h2>Your assigned jobs</h2>
+            </div>
+
+            <select
+              id="jobStatusFilter"
+              aria-label="Filter jobs by status"
+            >
+              <option value="all">All jobs</option>
+              <option value="assigned">
+                Ready to start
+              </option>
+              <option value="in_progress">
+                In progress
+              </option>
+              <option value="completed">
+                Completed
+              </option>
+            </select>
+          </div>
+
+          <div
+            class="technician-job-list"
+            id="technicianJobList"
+            aria-live="polite"
+          >
+            <p class="loading-message">
+              Loading assigned jobs...
+            </p>
+          </div>
+
+          <div
+            class="empty-state"
+            id="emptyJobState"
+            hidden
+          >
+            <span aria-hidden="true">H</span>
+            <h3>No jobs found</h3>
+            <p>
+              You currently have no assignments matching
+              this status.
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <dialog class="status-dialog" id="statusDialog">
+    <form method="dialog" class="status-dialog-content">
+      <button
+        type="button"
+        class="dialog-close"
+        id="closeStatusDialog"
+        aria-label="Close dialog"
+      >
+        ×
+      </button>
+
+      <p class="eyebrow">Update job</p>
+      <h2 id="statusDialogTitle">Update job status</h2>
+
+      <p id="statusDialogDescription"></p>
+
+      <div class="form-field">
+        <label for="statusNote">Progress note</label>
+
+        <textarea
+          id="statusNote"
+          rows="4"
+          placeholder="Add a short update for the customer."
+        ></textarea>
+      </div>
+
+      <p
+        class="form-message"
+        id="statusFormMessage"
+        role="status"
+        aria-live="polite"
+      ></p>
+
+      <div class="dialog-actions">
+        <button
+          type="button"
+          class="button button-secondary"
+          id="cancelStatusUpdate"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="button"
+          class="button button-primary"
+          id="confirmStatusUpdate"
+        >
+          Confirm Update
+        </button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>

@@ -1639,3 +1639,170 @@ a {
 
 
 
+/************** Technician dashboard *****************/
+
+.page-message.is-success {
+  margin-bottom: 1.5rem;
+  border-left: 4px solid var(--success);
+  background: #e8f4ec;
+  padding: 1rem;
+  color: var(--success);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.technician-job-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.technician-job-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-medium);
+  background: #fcfdfc;
+  padding: clamp(1.2rem, 3vw, 1.8rem);
+}
+
+.technician-job-card h3 {
+  margin: 0;
+  color: var(--forest-dark);
+  font-size: 1.2rem;
+}
+
+.technician-job-details {
+  display: grid;
+  gap: 1rem;
+  margin: 1.3rem 0;
+  border-block: 1px solid var(--border);
+  padding-block: 1.2rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.technician-job-details div {
+  min-width: 0;
+}
+
+.technician-job-details dt {
+  margin-bottom: 0.2rem;
+  color: var(--slate);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.technician-job-details dd {
+  overflow-wrap: anywhere;
+  margin: 0;
+  color: var(--charcoal);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.technician-job-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.7rem;
+  margin-top: 1.3rem;
+}
+
+.technician-job-footer .button {
+  min-height: 44px;
+  font-size: 0.7rem;
+}
+
+/* Status update dialog */
+
+.status-dialog {
+  width: min(92vw, 560px);
+  border: 0;
+  border-radius: var(--radius-medium);
+  box-shadow: 0 30px 80px rgba(5, 25, 22, 0.3);
+  padding: 0;
+}
+
+.status-dialog::backdrop {
+  background: rgba(6, 25, 22, 0.65);
+  backdrop-filter: blur(3px);
+}
+
+.status-dialog-content {
+  position: relative;
+  padding: clamp(1.5rem, 5vw, 2.7rem);
+}
+
+.status-dialog h2 {
+  margin: 0 0 0.6rem;
+  color: var(--forest-dark);
+  font-size: clamp(1.7rem, 4vw, 2.5rem);
+  letter-spacing: -0.04em;
+}
+
+.status-dialog-content > p:not(.eyebrow):not(
+    .form-message
+  ) {
+  margin: 0 0 1.5rem;
+  color: var(--slate);
+  font-size: 0.8rem;
+}
+
+.status-dialog textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.dialog-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--white);
+  cursor: pointer;
+  color: var(--forest);
+  font-size: 1.2rem;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.7rem;
+  margin-top: 1.5rem;
+}
+
+.dialog-actions .button {
+  min-height: 46px;
+  font-size: 0.72rem;
+}
+
+@media (max-width: 850px) {
+  .technician-job-details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 580px) {
+  .technician-job-details {
+    grid-template-columns: 1fr;
+  }
+
+  .technician-job-footer,
+  .dialog-actions {
+    flex-direction: column;
+  }
+
+  .technician-job-footer .button,
+  .dialog-actions .button {
+    width: 100%;
+  }
+}
+
+
+
+
+
