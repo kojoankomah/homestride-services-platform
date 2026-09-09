@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Request a Service | HomeStride</title>
+
+  <meta
+    name="description"
+    content="Submit a new HomeStride home-service request."
+  >
+
+  <link
+    rel="stylesheet"
+    href="../assets/css/style.css"
+  >
+
+  <script
+    src="../assets/js/api.js"
+    defer
+  ></script>
+
+  <script
+    src="../assets/js/main.js"
+    defer
+  ></script>
+
+  <script
+    src="../assets/js/new-request.js"
+    defer
+  ></script>
+</head>
+
+<body
+  class="dashboard-page is-auth-checking"
+  data-required-role="customer"
+>
+  <a class="skip-link" href="#mainContent">
+    Skip to main content
+  </a>
+
+  <div class="dashboard-shell">
+    <aside
+      class="dashboard-sidebar"
+      data-dashboard-navigation
+    >
+      <a class="brand dashboard-brand" href="../index.html">
+        <span class="brand-mark" aria-hidden="true">H</span>
+
+        <span>
+          <strong>HomeStride</strong>
+          <small>Service Portal</small>
+        </span>
+      </a>
+
+      <nav
+        class="dashboard-navigation"
+        aria-label="Customer navigation"
+      >
+        <p>Workspace</p>
+
+        <a href="../dashboards/customer.html">
+          <span aria-hidden="true">01</span>
+          Overview
+        </a>
+
+        <a class="is-active" href="new-request.html">
+          <span aria-hidden="true">02</span>
+          Request a Service
+        </a>
+
+        <a href="../pages/services.html">
+          <span aria-hidden="true">03</span>
+          Browse Services
+        </a>
+      </nav>
+
+      <div class="sidebar-account">
+        <span class="account-avatar" aria-hidden="true">
+          C
+        </span>
+
+        <div>
+          <strong data-user-name>Customer</strong>
+          <span data-user-role>Customer</span>
+        </div>
+
+        <button
+          type="button"
+          class="text-button"
+          data-logout
+        >
+          Sign out
+        </button>
+      </div>
+    </aside>
+
+    <div class="dashboard-content">
+      <header class="dashboard-topbar">
+        <button
+          type="button"
+          class="navigation-toggle"
+          data-navigation-toggle
+          aria-expanded="false"
+          aria-label="Open dashboard navigation"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div>
+          <p>Customer portal</p>
+          <strong>New service request</strong>
+        </div>
+
+        <a
+          class="button button-secondary"
+          href="../dashboards/customer.html"
+        >
+          Back to Dashboard
+        </a>
+      </header>
+
+      <main id="mainContent" class="dashboard-main">
+        <p
+          class="page-message"
+          id="pageMessage"
+          role="status"
+          aria-live="polite"
+        ></p>
+
+        <div class="booking-layout">
+          <section class="dashboard-panel booking-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Book home support</p>
+                <h1>Request a service</h1>
+              </div>
+            </div>
+
+            <form
+              class="service-request-form"
+              id="serviceRequestForm"
+              novalidate
+            >
+              <fieldset>
+                <legend>1. Select the service</legend>
+
+                <div class="form-field">
+                  <label for="serviceId">
+                    Service required
+                  </label>
+
+                  <select
+                    id="serviceId"
+                    name="serviceId"
+                    required
+                  >
+                    <option value="">
+                      Loading services...
+                    </option>
+                  </select>
+
+                  <small
+                    class="field-error"
+                    id="serviceIdError"
+                  ></small>
+                </div>
+
+                <div
+                  class="service-selection-summary"
+                  id="serviceSummary"
+                  hidden
+                >
+                  <strong id="selectedServiceName"></strong>
+                  <p id="selectedServiceDescription"></p>
+
+                  <div>
+                    <span>
+                      Starting from
+                      <strong id="selectedServicePrice"></strong>
+                    </span>
+
+                    <span>
+                      Estimated time
+                      <strong id="selectedServiceDuration"></strong>
+                    </span>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>2. Choose the service location</legend>
+
+                <div class="form-field">
+                  <label for="addressId">Saved address</label>
+
+                  <select
+                    id="addressId"
+                    name="addressId"
+                    required
+                  >
+                    <option value="">
+                      Loading addresses...
+                    </option>
+                  </select>
+
+                  <small
+                    class="field-error"
+                    id="addressIdError"
+                  ></small>
+                </div>
+
+                <div
+                  class="new-address-fields"
+                  id="newAddressFields"
+                  hidden
+                >
+                  <div class="form-grid">
+                    <div class="form-field">
+                      <label for="addressLabel">
+                        Address label
+                      </label>
+
+                      <input
+                        type="text"
+                        id="addressLabel"
+                        name="addressLabel"
+                        placeholder="Home or apartment"
+                      >
+
+                      <small
+                        class="field-error"
+                        id="addressLabelError"
+                      ></small>
+                    </div>
+
+                    <div class="form-field">
+                      <label for="city">Town or city</label>
+
+                      <input
+                        type="text"
+                        id="city"
+                        name="city"
+                      >
+
+                      <small
+                        class="field-error"
+                        id="cityError"
+                      ></small>
+                    </div>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="addressLine">
+                      Address details
+                    </label>
+
+                    <input
+                      type="text"
+                      id="addressLine"
+                      name="addressLine"
+                      placeholder="House number, street or area"
+                    >
+
+                    <small
+                      class="field-error"
+                      id="addressLineError"
+                    ></small>
+                  </div>
+
+                  <div class="form-grid">
+                    <div class="form-field">
+                      <label for="region">Region</label>
+
+                      <select id="region" name="region">
+                        <option value="">
+                          Select a region
+                        </option>
+
+                        <option value="Central Region">
+                          Central Region
+                        </option>
+
+                        <option value="Greater Accra Region">
+                          Greater Accra Region
+                        </option>
+
+                        <option value="Western Region">
+                          Western Region
+                        </option>
+
+                        <option value="Other">
+                          Other
+                        </option>
+                      </select>
+
+                      <small
+                        class="field-error"
+                        id="regionError"
+                      ></small>
+                    </div>
+
+                    <div class="form-field">
+                      <label for="landmark">
+                        Nearby landmark
+                      </label>
+
+                      <input
+                        type="text"
+                        id="landmark"
+                        name="landmark"
+                        placeholder="Optional"
+                      >
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>3. Schedule and describe the work</legend>
+
+                <div class="form-grid">
+                  <div class="form-field">
+                    <label for="preferredDate">
+                      Preferred date
+                    </label>
+
+                    <input
+                      type="date"
+                      id="preferredDate"
+                      name="preferredDate"
+                      required
+                    >
+
+                    <small
+                      class="field-error"
+                      id="preferredDateError"
+                    ></small>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="preferredTime">
+                      Preferred time
+                    </label>
+
+                    <input
+                      type="time"
+                      id="preferredTime"
+                      name="preferredTime"
+                      required
+                    >
+
+                    <small
+                      class="field-error"
+                      id="preferredTimeError"
+                    ></small>
+                  </div>
+                </div>
+
+                <div class="form-field">
+                  <label for="problemDescription">
+                    What work is required?
+                  </label>
+
+                  <textarea
+                    id="problemDescription"
+                    name="problemDescription"
+                    rows="6"
+                    placeholder="Describe the issue, affected area and any useful details."
+                    required
+                  ></textarea>
+
+                  <small class="field-hint">
+                    Enter at least 20 characters.
+                  </small>
+
+                  <small
+                    class="field-error"
+                    id="problemDescriptionError"
+                  ></small>
+                </div>
+              </fieldset>
+
+              <button
+                class="button button-primary"
+                type="submit"
+              >
+                Submit Service Request
+              </button>
+
+              <p
+                class="form-message"
+                id="formMessage"
+                role="status"
+                aria-live="polite"
+              ></p>
+            </form>
+          </section>
+
+          <aside class="booking-guidance">
+            <p class="eyebrow">What happens next</p>
+            <h2>A clear process from request to completion.</h2>
+
+            <ol>
+              <li>
+                <span>01</span>
+                <div>
+                  <strong>Request review</strong>
+                  <p>
+                    An administrator reviews the service
+                    details and preferred schedule.
+                  </p>
+                </div>
+              </li>
+
+              <li>
+                <span>02</span>
+                <div>
+                  <strong>Technician assignment</strong>
+                  <p>
+                    A suitable available technician is
+                    selected for the work.
+                  </p>
+                </div>
+              </li>
+
+              <li>
+                <span>03</span>
+                <div>
+                  <strong>Progress updates</strong>
+                  <p>
+                    Follow the job from assignment through
+                    completion in your dashboard.
+                  </p>
+                </div>
+              </li>
+            </ol>
+
+            <div class="booking-note">
+              <strong>Pricing note</strong>
+              <p>
+                Displayed amounts are starting estimates.
+                Final pricing depends on the work required.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Request Details | HomeStride</title>
+
+  <meta
+    name="description"
+    content="Review the details and progress of a HomeStride service request."
+  >
+
+  <link
+    rel="stylesheet"
+    href="../assets/css/style.css"
+  >
+
+  <script
+    src="../assets/js/api.js"
+    defer
+  ></script>
+
+  <script
+    src="../assets/js/main.js"
+    defer
+  ></script>
+
+  <script
+    src="../assets/js/request-details.js"
+    defer
+  ></script>
+</head>
+
+<body
+  class="dashboard-page is-auth-checking"
+  data-required-role="customer"
+>
+  <a class="skip-link" href="#mainContent">
+    Skip to main content
+  </a>
+
+  <div class="dashboard-shell">
+    <aside
+      class="dashboard-sidebar"
+      data-dashboard-navigation
+    >
+      <a class="brand dashboard-brand" href="../index.html">
+        <span class="brand-mark" aria-hidden="true">H</span>
+
+        <span>
+          <strong>HomeStride</strong>
+          <small>Service Portal</small>
+        </span>
+      </a>
+
+      <nav
+        class="dashboard-navigation"
+        aria-label="Customer navigation"
+      >
+        <p>Workspace</p>
+
+        <a href="../dashboards/customer.html">
+          <span aria-hidden="true">01</span>
+          Overview
+        </a>
+
+        <a href="new-request.html">
+          <span aria-hidden="true">02</span>
+          Request a Service
+        </a>
+
+        <a href="../pages/services.html">
+          <span aria-hidden="true">03</span>
+          Browse Services
+        </a>
+      </nav>
+
+      <div class="sidebar-account">
+        <span class="account-avatar" aria-hidden="true">
+          C
+        </span>
+
+        <div>
+          <strong data-user-name>Customer</strong>
+          <span data-user-role>Customer</span>
+        </div>
+
+        <button
+          type="button"
+          class="text-button"
+          data-logout
+        >
+          Sign out
+        </button>
+      </div>
+    </aside>
+
+    <div class="dashboard-content">
+      <header class="dashboard-topbar">
+        <button
+          type="button"
+          class="navigation-toggle"
+          data-navigation-toggle
+          aria-expanded="false"
+          aria-label="Open dashboard navigation"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div>
+          <p>Customer portal</p>
+          <strong>Service request details</strong>
+        </div>
+
+        <a
+          class="button button-secondary"
+          href="../dashboards/customer.html"
+        >
+          Back to Dashboard
+        </a>
+      </header>
+
+      <main id="mainContent" class="dashboard-main">
+        <p
+          class="page-message"
+          id="pageMessage"
+          role="status"
+          aria-live="polite"
+        ></p>
+
+        <p class="loading-message" id="detailsLoading">
+          Loading request details...
+        </p>
+
+        <div
+          class="request-details-layout"
+          id="requestDetailsContent"
+          hidden
+        >
+          <div class="request-details-primary">
+            <section class="request-details-hero">
+              <div>
+                <p
+                  class="request-reference"
+                  id="requestReference"
+                ></p>
+
+                <h1 id="requestServiceName"></h1>
+
+                <p id="requestDescription"></p>
+              </div>
+
+              <span
+                class="status-badge"
+                id="requestStatus"
+              ></span>
+            </section>
+
+            <section class="dashboard-panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Appointment</p>
+                  <h2>Service information</h2>
+                </div>
+              </div>
+
+              <dl class="request-information-grid">
+                <div>
+                  <dt>Preferred date</dt>
+                  <dd id="preferredDate"></dd>
+                </div>
+
+                <div>
+                  <dt>Preferred time</dt>
+                  <dd id="preferredTime"></dd>
+                </div>
+
+                <div>
+                  <dt>Service location</dt>
+                  <dd id="serviceLocation"></dd>
+                </div>
+
+                <div>
+                  <dt>Nearby landmark</dt>
+                  <dd id="serviceLandmark"></dd>
+                </div>
+
+                <div>
+                  <dt>Submitted</dt>
+                  <dd id="submittedDate"></dd>
+                </div>
+
+                <div>
+                  <dt>Last updated</dt>
+                  <dd id="updatedDate"></dd>
+                </div>
+              </dl>
+            </section>
+
+            <section class="dashboard-panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Job progress</p>
+                  <h2>Status history</h2>
+                </div>
+              </div>
+
+              <ol
+                class="status-timeline"
+                id="statusTimeline"
+              ></ol>
+            </section>
+          </div>
+
+          <aside class="request-summary-panel">
+            <p class="eyebrow">Request summary</p>
+
+            <div class="summary-item">
+              <span>Estimated starting price</span>
+              <strong id="servicePrice"></strong>
+            </div>
+
+            <div class="summary-item">
+              <span>Assigned technician</span>
+              <strong id="technicianName"></strong>
+            </div>
+
+            <div class="summary-item">
+              <span>Admin note</span>
+              <p id="adminNote"></p>
+            </div>
+
+            <div class="summary-notice">
+              <strong>Need another service?</strong>
+              <p>
+                Start a separate request so each job can be
+                assigned and tracked clearly.
+              </p>
+
+              <a
+                class="button button-primary"
+                href="new-request.html"
+              >
+                New Service Request
+              </a>
+            </div>
+          </aside>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
