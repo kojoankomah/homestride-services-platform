@@ -8,7 +8,7 @@ const addressRoutes = require("./routes/addressRoutes");
 const requestRoutes = require("./routes/requestRoutes");
 const technicianRoutes = require("./routes/technicianRoutes");
 const adminRequestRoutes = require("./routes/adminRequestRoutes");
-
+const technicianRequestRoutes = require("./routes/technicianRequestRoutes");
 
 
 
@@ -67,7 +67,7 @@ app.use("/api/addresses", addressRoutes);
 app.use("/api/requests", requestRoutes);
 app.use("/api/technicians", technicianRoutes);
 app.use("/api/admin/requests", adminRequestRoutes);
-
+app.use("/api/technician/requests",technicianRequestRoutes);
 
 
 
