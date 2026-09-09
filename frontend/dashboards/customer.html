@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Customer Dashboard | HomeStride Services</title>
+
+  <meta
+    name="description"
+    content="Manage and track your HomeStride service requests."
+  >
+
+  <link
+    rel="stylesheet"
+    href="../assets/css/style.css"
+  >
+
+  <script
+    src="../assets/js/api.js"
+    defer
+  ></script>
+
+  <script
+    src="../assets/js/main.js"
+    defer
+  ></script>
+
+  <script
+    src="../assets/js/customer-dashboard.js"
+    defer
+  ></script>
+</head>
+
+<body
+  class="dashboard-page is-auth-checking"
+  data-required-role="customer"
+>
+  <a class="skip-link" href="#mainContent">
+    Skip to main content
+  </a>
+
+  <div class="dashboard-shell">
+    <aside
+      class="dashboard-sidebar"
+      data-dashboard-navigation
+    >
+      <a class="brand dashboard-brand" href="../index.html">
+        <span class="brand-mark" aria-hidden="true">H</span>
+
+        <span>
+          <strong>HomeStride</strong>
+          <small>Service Portal</small>
+        </span>
+      </a>
+
+      <nav
+        class="dashboard-navigation"
+        aria-label="Customer navigation"
+      >
+        <p>Workspace</p>
+
+        <a class="is-active" href="customer.html">
+          <span aria-hidden="true">01</span>
+          Overview
+        </a>
+
+        <a href="../requests/new-request.html">
+          <span aria-hidden="true">02</span>
+          Request a Service
+        </a>
+
+        <a href="../pages/services.html">
+          <span aria-hidden="true">03</span>
+          Browse Services
+        </a>
+      </nav>
+
+      <div class="sidebar-account">
+        <span class="account-avatar" aria-hidden="true">
+          C
+        </span>
+
+        <div>
+          <strong data-user-name>Customer</strong>
+          <span data-user-role>Customer</span>
+        </div>
+
+        <button
+          type="button"
+          class="text-button"
+          data-logout
+        >
+          Sign out
+        </button>
+      </div>
+    </aside>
+
+    <div class="dashboard-content">
+      <header class="dashboard-topbar">
+        <button
+          type="button"
+          class="navigation-toggle"
+          data-navigation-toggle
+          aria-expanded="false"
+          aria-label="Open dashboard navigation"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div>
+          <p>Customer portal</p>
+          <strong>Home service management</strong>
+        </div>
+
+        <a
+          class="button button-primary"
+          href="../requests/new-request.html"
+        >
+          New Service Request
+        </a>
+      </header>
+
+      <main id="mainContent" class="dashboard-main">
+        <p
+          class="page-message"
+          id="pageMessage"
+          role="status"
+          aria-live="polite"
+        ></p>
+
+        <section class="dashboard-welcome">
+          <div>
+            <p class="eyebrow">Account overview</p>
+
+            <h1>
+              Welcome,
+              <span data-user-name>Customer</span>.
+            </h1>
+
+            <p>
+              Review your home-service requests and follow
+              each job from submission to completion.
+            </p>
+          </div>
+
+          <a
+            class="button button-light"
+            href="../requests/new-request.html"
+          >
+            Request a Service
+          </a>
+        </section>
+
+        <section
+          class="dashboard-statistics"
+          aria-label="Request statistics"
+        >
+          <article>
+            <span>All requests</span>
+            <strong id="allRequestCount">0</strong>
+            <small>Your complete service history</small>
+          </article>
+
+          <article>
+            <span>Pending review</span>
+            <strong id="pendingRequestCount">0</strong>
+            <small>Waiting for admin review</small>
+          </article>
+
+          <article>
+            <span>Active jobs</span>
+            <strong id="activeRequestCount">0</strong>
+            <small>Assigned or currently underway</small>
+          </article>
+
+          <article>
+            <span>Completed</span>
+            <strong id="completedRequestCount">0</strong>
+            <small>Successfully finished services</small>
+          </article>
+        </section>
+
+        <section class="dashboard-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Service history</p>
+              <h2>Your requests</h2>
+            </div>
+
+            <select
+              id="requestStatusFilter"
+              aria-label="Filter requests by status"
+            >
+              <option value="all">All statuses</option>
+              <option value="pending">Pending</option>
+              <option value="confirmed">Confirmed</option>
+              <option value="assigned">Assigned</option>
+              <option value="in_progress">
+                In progress
+              </option>
+              <option value="completed">Completed</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          </div>
+
+          <div
+            class="request-list"
+            id="requestList"
+            aria-live="polite"
+          >
+            <p class="loading-message">
+              Loading your service requests...
+            </p>
+          </div>
+
+          <div
+            class="empty-state"
+            id="emptyState"
+            hidden
+          >
+            <span aria-hidden="true">H</span>
+            <h3>No requests found</h3>
+            <p>
+              Submit your first service request or choose
+              another status filter.
+            </p>
+
+            <a
+              class="button button-primary"
+              href="../requests/new-request.html"
+            >
+              Request a Service
+            </a>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
