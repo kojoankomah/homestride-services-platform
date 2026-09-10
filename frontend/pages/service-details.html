@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+
+        <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+        >
+
+        <title>Service Details | HomeStride Services</title>
+
+        <meta
+        name="description"
+        content="Review HomeStride service information, expected duration and starting price before submitting a household service request."
+        >
+
+        <link
+        rel="stylesheet"
+        href="../assets/css/style.css"
+        >
+
+        <script src="../assets/js/api.js" defer></script>
+        <script src="../assets/js/public.js" defer></script>
+        <script src="../assets/js/service-details.js" defer></script>
+
+    </head>
+
+    <body class="public-page" data-page="service-details">
+        <a class="skip-link" href="#mainContent">
+        Skip to main content
+        </a>
+
+    <header class="site-header">
+        <div class="public-container header-content">
+            <a class="brand" href="../index.html">
+            <span class="brand-mark" aria-hidden="true">H</span>
+
+            <span>
+                <strong>HomeStride</strong>
+                <small>Reliable care. Right at home.</small>
+            </span>
+            </a>
+
+            <button
+            class="public-navigation-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="primaryNavigation"
+            data-public-navigation-toggle
+            >
+            <span></span>
+            <span></span>
+            <span></span>
+            <span class="screen-reader-only">Open menu</span>
+            </button>
+
+            <nav
+            class="primary-navigation"
+            id="primaryNavigation"
+            aria-label="Primary navigation"
+            data-public-navigation
+            >
+            <a href="../index.html">Home</a>
+            <a class="is-active" href="services.html" aria-current="page">Services</a>
+            <a href="how-it-works.html">How It Works</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            </nav>
+
+            <div class="header-actions">
+            <a class="header-login" href="../auth/login.html">
+                Sign In
+            </a>
+
+            <a
+                class="button button-primary"
+                href="../auth/register.html"
+            >
+                Request a Service
+            </a>
+            </div>
+        </div>
+    </header>
+
+        <main id="mainContent">
+            <section class="service-detail-hero">
+                <div class="container">
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <a href="../index.html">Home</a>
+                    <span aria-hidden="true">/</span>
+                    <a href="services.html">Services</a>
+                    <span aria-hidden="true">/</span>
+                    <span id="serviceBreadcrumb">Service Details</span>
+                </nav>
+
+                <p
+                    class="page-message service-detail-message"
+                    id="serviceDetailMessage"
+                    role="status"
+                    aria-live="polite"
+                >
+                    Loading service details...
+                </p>
+
+                <div
+                    class="service-detail-hero-grid"
+                    id="serviceDetailHero"
+                    hidden
+                >
+                    <div>
+                    <p class="eyebrow eyebrow-light">
+                        HomeStride household service
+                    </p>
+
+                    <h1 id="serviceDetailName"></h1>
+                    <p id="serviceDetailDescription"></p>
+                    </div>
+
+                    <dl class="service-detail-summary">
+                    <div>
+                        <dt>Starting price</dt>
+                        <dd id="serviceDetailPrice"></dd>
+                    </div>
+
+                    <div>
+                        <dt>Estimated duration</dt>
+                        <dd id="serviceDetailDuration"></dd>
+                    </div>
+
+                    <div>
+                        <dt>Availability</dt>
+                        <dd>Subject to technician assignment</dd>
+                    </div>
+                    </dl>
+                </div>
+                </div>
+            </section>
+
+            <div id="serviceDetailBody" hidden>
+                <section class="section service-detail-overview">
+                <div class="container service-detail-overview-grid">
+                    <div>
+                    <p class="eyebrow">Before requesting</p>
+                    <h2>Help us understand the work clearly.</h2>
+                    </div>
+
+                    <div class="service-preparation-list">
+                    <article>
+                        <span>01</span>
+                        <div>
+                        <h3>Describe the Problem</h3>
+                        <p>
+                            Explain what you have noticed, where the problem is
+                            located and how long it has been present.
+                        </p>
+                        </div>
+                    </article>
+
+                    <article>
+                        <span>02</span>
+                        <div>
+                        <h3>Provide the Location</h3>
+                        <p>
+                            Select a saved address or provide the city, region and
+                            clear directions for the appointment.
+                        </p>
+                        </div>
+                    </article>
+
+                    <article>
+                        <span>03</span>
+                        <div>
+                        <h3>Choose a Preferred Time</h3>
+                        <p>
+                            Add a suitable date and time for the service request to
+                            support assignment planning.
+                        </p>
+                        </div>
+                    </article>
+                    </div>
+                </div>
+                </section>
+
+                <section class="section service-detail-process">
+                <div class="container">
+                    <div class="centered-heading">
+                    <p class="eyebrow">After submission</p>
+                    <h2>Your request remains visible at every stage.</h2>
+                    </div>
+
+                    <ol class="service-detail-process-grid">
+                    <li>
+                        <span>01</span>
+                        <h3>Pending Review</h3>
+                        <p>
+                        The submitted details become available to an administrator.
+                        </p>
+                    </li>
+
+                    <li>
+                        <span>02</span>
+                        <h3>Technician Assigned</h3>
+                        <p>
+                        A technician with the relevant recorded skill is selected.
+                        </p>
+                    </li>
+
+                    <li>
+                        <span>03</span>
+                        <h3>Work in Progress</h3>
+                        <p>
+                        The technician can start the job and provide a progress note.
+                        </p>
+                    </li>
+
+                    <li>
+                        <span>04</span>
+                        <h3>Service Completed</h3>
+                        <p>
+                        The final status and completion note appear in your dashboard.
+                        </p>
+                    </li>
+                    </ol>
+                </div>
+                </section>
+
+                <section class="section service-detail-cta">
+                <div class="container service-detail-cta-content">
+                    <div>
+                    <p class="eyebrow eyebrow-light">Ready to continue?</p>
+                    <h2 id="serviceDetailCtaTitle">
+                        Submit your HomeStride service request.
+                    </h2>
+                    </div>
+
+                    <a
+                    class="button button-primary"
+                    id="serviceRequestLink"
+                    href="../requests/new-request.html"
+                    >
+                    Request This Service
+                    </a>
+                </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="site-footer">
+        <div class="public-container footer-grid">
+            <div>
+            <a class="brand footer-brand" href="../index.html">
+                <span class="brand-mark" aria-hidden="true">H</span>
+
+                <span>
+                <strong>HomeStride</strong>
+                <small>Reliable care. Right at home.</small>
+                </span>
+            </a>
+
+            <p>
+                A fictional full-stack home-services platform
+                created as a professional portfolio project.
+            </p>
+            </div>
+
+            <div>
+            <h2>Explore</h2>
+            <a href="services.html">Services</a>
+            <a href="how-it-works.html">How It Works</a>
+            <a href="about.html">About HomeStride</a>
+            </div>
+
+            <div>
+            <h2>Account</h2>
+            <a href="../auth/register.html">Create Account</a>
+            <a href="../auth/login.html">Sign In</a>
+            <a href="contact.html">Contact</a>
+            </div>
+        </div>
+
+        <div class="public-container footer-bottom">
+            <p>© <span id="currentYear"></span> HomeStride Services.</p>
+            <p>Fictional portfolio demonstration.</p>
+        </div>
+        </footer>
+    </body>
+</html>
