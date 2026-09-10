@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>HomeStride Services | Reliable Care at Home</title>
+
+  <meta
+    name="description"
+    content="Request and track trusted plumbing, electrical, cleaning, repair and maintenance services with HomeStride."
+  >
+
+  <link
+    rel="stylesheet"
+    href="assets/css/style.css"
+  >
+
+  <script src="assets/js/api.js" defer></script>
+  <script src="assets/js/public.js" defer></script>
+  <script src="assets/js/home.js" defer></script>
+</head>
+
+<body class="public-page" data-page="home">
+  <a class="skip-link" href="#mainContent">
+    Skip to main content
+  </a>
+
+  <header class="site-header">
+    <div class="public-container header-content">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">H</span>
+
+        <span>
+          <strong>HomeStride</strong>
+          <small>Reliable care. Right at home.</small>
+        </span>
+      </a>
+
+      <button
+        class="public-navigation-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="primaryNavigation"
+        data-public-navigation-toggle
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+        <span class="screen-reader-only">Open menu</span>
+      </button>
+
+      <nav
+        class="primary-navigation"
+        id="primaryNavigation"
+        aria-label="Primary navigation"
+        data-public-navigation
+      >
+        <a class="is-active" href="index.html">Home</a>
+        <a href="pages/services.html">Services</a>
+        <a href="pages/how-it-works.html">How It Works</a>
+        <a href="pages/about.html">About</a>
+        <a href="pages/contact.html">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="header-login" href="auth/login.html">
+          Sign In
+        </a>
+
+        <a
+          class="button button-primary"
+          href="auth/register.html"
+        >
+          Request a Service
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="mainContent">
+    <section class="home-hero">
+      <div class="public-container home-hero-layout">
+        <div class="home-hero-content">
+          <p class="eyebrow">Home support made clearer</p>
+
+          <h1>
+            Reliable care for the place you call home.
+          </h1>
+
+          <p>
+            Book trusted household services, receive clear
+            technician assignments and track every job from
+            request to completion.
+          </p>
+
+          <div class="hero-actions">
+            <a
+              class="button button-primary"
+              href="auth/register.html"
+            >
+              Request a Service
+            </a>
+
+            <a
+              class="button button-outline-light"
+              href="pages/services.html"
+            >
+              Explore Services
+            </a>
+          </div>
+
+          <dl class="hero-statistics">
+            <div>
+              <dt>7</dt>
+              <dd>Service categories</dd>
+            </div>
+
+            <div>
+              <dt>2</dt>
+              <dd>Primary service regions</dd>
+            </div>
+
+            <div>
+              <dt>3</dt>
+              <dd>Connected user roles</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="home-hero-visual">
+          <img
+            src="assets/images/home/home-service-team.webp"
+            alt="Home-services professionals preparing for a residential appointment"
+            width="1200"
+            height="1400"
+            fetchpriority="high"
+          >
+
+          <div class="hero-service-card">
+            <span aria-hidden="true">✓</span>
+
+            <div>
+              <strong>Track every request</strong>
+              <p>
+                From pending review to completed work.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="service-overview public-section"
+      aria-labelledby="serviceOverviewTitle"
+    >
+      <div class="public-container">
+        <div class="public-section-heading">
+          <div>
+            <p class="eyebrow">Our services</p>
+            <h2 id="serviceOverviewTitle">
+              Practical help for everyday home needs.
+            </h2>
+          </div>
+
+          <p>
+            Choose a service, provide the location and
+            preferred schedule, then follow its progress
+            through your customer account.
+          </p>
+        </div>
+
+        <div
+          class="public-service-grid"
+          id="featuredServices"
+          aria-live="polite"
+        >
+          <p class="loading-message">
+            Loading HomeStride services...
+          </p>
+        </div>
+
+        <div class="section-action">
+          <a
+            class="button button-secondary"
+            href="pages/services.html"
+          >
+            View All Services
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="how-it-works-preview public-section">
+      <div class="public-container">
+        <div class="centered-public-heading">
+          <p class="eyebrow">How it works</p>
+          <h2>Home service without the uncertainty.</h2>
+          <p>
+            One connected workflow keeps customers,
+            administrators and technicians informed.
+          </p>
+        </div>
+
+        <ol class="public-process-grid">
+          <li>
+            <span>01</span>
+            <h3>Choose a Service</h3>
+            <p>
+              Select the household support you need and
+              describe the work clearly.
+            </p>
+          </li>
+
+          <li>
+            <span>02</span>
+            <h3>Submit Your Request</h3>
+            <p>
+              Add the service location and your preferred
+              appointment date and time.
+            </p>
+          </li>
+
+          <li>
+            <span>03</span>
+            <h3>Receive an Assignment</h3>
+            <p>
+              An administrator reviews the request and
+              assigns a suitable technician.
+            </p>
+          </li>
+
+          <li>
+            <span>04</span>
+            <h3>Track Completion</h3>
+            <p>
+              Follow progress updates from assignment
+              through completed work.
+            </p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="public-section home-confidence">
+      <div class="public-container confidence-layout">
+        <div>
+          <p class="eyebrow">Built around accountability</p>
+
+          <h2>
+            Every request has a clear owner and status.
+          </h2>
+
+          <p>
+            HomeStride organizes communication between the
+            household, operations team and assigned
+            technician in one straightforward platform.
+          </p>
+
+          <ul class="confidence-list">
+            <li>Authenticated customer accounts</li>
+            <li>Skill-based technician assignment</li>
+            <li>Recorded status history</li>
+            <li>Responsive role-specific dashboards</li>
+          </ul>
+        </div>
+
+        <div class="confidence-panel">
+          <p>Example request progress</p>
+
+          <ol>
+            <li class="is-complete">
+              <span></span>
+              Request submitted
+            </li>
+
+            <li class="is-complete">
+              <span></span>
+              Technician assigned
+            </li>
+
+            <li class="is-current">
+              <span></span>
+              Work in progress
+            </li>
+
+            <li>
+              <span></span>
+              Service completed
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="public-call-to-action">
+      <div class="public-container call-to-action-content">
+        <div>
+          <p class="eyebrow">Ready when your home needs help</p>
+          <h2>Start your next service request.</h2>
+        </div>
+
+        <a
+          class="button button-primary"
+          href="auth/register.html"
+        >
+          Create Customer Account
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="public-container footer-grid">
+      <div>
+        <a class="brand footer-brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true">H</span>
+
+          <span>
+            <strong>HomeStride</strong>
+            <small>Reliable care. Right at home.</small>
+          </span>
+        </a>
+
+        <p>
+          A fictional full-stack home-services platform
+          created as a professional portfolio project.
+        </p>
+      </div>
+
+      <div>
+        <h2>Explore</h2>
+        <a href="pages/services.html">Services</a>
+        <a href="pages/how-it-works.html">How It Works</a>
+        <a href="pages/about.html">About HomeStride</a>
+      </div>
+
+      <div>
+        <h2>Account</h2>
+        <a href="auth/register.html">Create Account</a>
+        <a href="auth/login.html">Sign In</a>
+        <a href="pages/contact.html">Contact</a>
+      </div>
+    </div>
+
+    <div class="public-container footer-bottom">
+      <p>© <span id="currentYear"></span> HomeStride Services.</p>
+      <p>Fictional portfolio demonstration.</p>
+    </div>
+  </footer>
+</body>
+</html>
