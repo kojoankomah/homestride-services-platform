@@ -3648,3 +3648,231 @@ a {
     width: 100%;
   }
 }
+
+
+
+
+
+
+/********************* About page ******************/
+
+.about-introduction {
+  background: #f6f1e7;
+}
+
+.about-introduction-grid {
+  display: grid;
+  align-items: center;
+  gap: clamp(3rem, 8vw, 7rem);
+  grid-template-columns: 0.9fr 1.1fr;
+}
+
+.about-introduction-image {
+  height: min(720px, 75vw);
+  overflow: hidden;
+  border-radius: 240px 240px 0 0;
+  background: var(--forest);
+}
+
+.about-introduction-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-introduction-content h2 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.about-introduction-content > p:not(.eyebrow) {
+  color: var(--slate);
+}
+
+.about-statistics {
+  display: grid;
+  gap: 1px;
+  margin-top: 2.5rem;
+  background: #cbd1cd;
+  border: 1px solid #cbd1cd;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.about-statistics div {
+  display: grid;
+  gap: 0.35rem;
+  background: #f6f1e7;
+  padding: 1.3rem;
+}
+
+.about-statistics strong {
+  color: var(--forest-dark);
+  font-size: 1.8rem;
+}
+
+.about-statistics span {
+  color: var(--slate);
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+/* About principles */
+
+.about-principles {
+  background: var(--white);
+}
+
+.about-principles .centered-heading {
+  max-width: 780px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.about-principles .centered-heading > p:last-child {
+  color: var(--slate);
+}
+
+.about-principles-grid {
+  display: grid;
+  gap: 1px;
+  margin-top: 3.5rem;
+  background: var(--border);
+  border: 1px solid var(--border);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.about-principles-grid article {
+  min-height: 340px;
+  background: var(--white);
+  padding: clamp(1.5rem, 3vw, 2.2rem);
+}
+
+.about-principles-grid article > span {
+  display: block;
+  margin-bottom: 4rem;
+  color: #b57808;
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.about-principles-grid h3 {
+  color: var(--forest-dark);
+  font-size: 1.25rem;
+}
+
+.about-principles-grid p {
+  margin: 0;
+  color: var(--slate);
+  font-size: 0.78rem;
+}
+
+/* About technology */
+
+.about-technology {
+  background: var(--forest-dark);
+  color: var(--white);
+}
+
+.about-technology-layout {
+  display: grid;
+  align-items: start;
+  gap: clamp(3rem, 8vw, 7rem);
+  grid-template-columns: 1fr 1fr;
+}
+
+.about-technology h2 {
+  color: var(--white);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.about-technology-layout > div > p:last-child {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.technology-list {
+  margin: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.technology-list div {
+  display: grid;
+  gap: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  padding-block: 1.3rem;
+  grid-template-columns: 120px 1fr;
+}
+
+.technology-list dt {
+  color: #efb84b;
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.technology-list dd {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.8rem;
+}
+
+/* Portfolio disclosure */
+
+.portfolio-disclosure {
+  background: #e8f0eb;
+}
+
+.portfolio-disclosure-content {
+  max-width: 900px;
+  text-align: center;
+}
+
+.portfolio-disclosure h2 {
+  font-size: clamp(2.3rem, 5vw, 4rem);
+}
+
+.portfolio-disclosure-content > p:last-child {
+  margin: 0;
+  color: var(--slate);
+}
+
+/* About responsive styles */
+
+@media (max-width: 950px) {
+  .about-introduction-grid,
+  .about-technology-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .about-introduction-image {
+    width: min(100%, 650px);
+    height: 650px;
+  }
+
+  .about-principles-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .about-introduction-image {
+    height: 500px;
+  }
+
+  .about-statistics,
+  .about-principles-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-principles-grid article {
+    min-height: auto;
+  }
+
+  .about-principles-grid article > span {
+    margin-bottom: 2.5rem;
+  }
+
+  .technology-list div {
+    gap: 0.4rem;
+    grid-template-columns: 1fr;
+  }
+}

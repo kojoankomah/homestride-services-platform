@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        >
+
+        <title>About HomeStride | Home Services Platform</title>
+
+        <meta
+            name="description"
+            content="Learn about HomeStride, a fictional full-stack platform designed to organize household service requests, technician assignments and progress tracking."
+        >
+
+        <link
+            rel="stylesheet"
+            href="../assets/css/style.css"
+        >
+
+        <script src="../assets/js/api.js" defer></script>
+        <script src="../assets/js/public.js" defer></script>
+
+    </head>
+
+    <body class="public-page" data-page="about">
+    <a class="skip-link" href="#mainContent">
+        Skip to main content
+    </a>
+
+    <header class="site-header">
+        <div class="public-container header-content">
+        <a class="brand" href="../index.html">
+            <span class="brand-mark" aria-hidden="true">H</span>
+
+            <span>
+            <strong>HomeStride</strong>
+            <small>Reliable care. Right at home.</small>
+            </span>
+        </a>
+
+        <button
+            class="public-navigation-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="primaryNavigation"
+            data-public-navigation-toggle
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+            <span class="screen-reader-only">Open menu</span>
+        </button>
+
+        <nav
+            class="primary-navigation"
+            id="primaryNavigation"
+            aria-label="Primary navigation"
+            data-public-navigation
+        >
+            <a href="../index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="how-it-works.html" aria-current="page">How It Works</a>
+            <a class="is-active" href="about.html" aria-current="page">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+            <a class="header-login" href="../auth/login.html">
+            Sign In
+            </a>
+
+            <a
+            class="button button-primary"
+            href="../auth/register.html"
+            >
+            Request a Service
+            </a>
+        </div>
+        </div>
+    </header>
+
+    <main id="mainContent">
+    <section class="public-page-hero">
+        <div class="public-container public-page-hero-content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a>
+            <span aria-hidden="true">/</span>
+            <span>About</span>
+        </nav>
+
+        <p class="eyebrow eyebrow-light">
+            About HomeStride
+        </p>
+
+        <h1>Designed to make home-service coordination clearer.</h1>
+
+        <p>
+            HomeStride is a fictional full-stack platform that demonstrates
+            how customers, administrators and technicians can manage household
+            service requests together.
+        </p>
+        </div>
+    </section>
+
+    <section class="section about-introduction">
+        <div class="public-container about-introduction-grid">
+        <div class="about-introduction-image">
+            <img
+            src="../assets/images/home/home-service-team.webp"
+            alt="HomeStride service professionals outside a modern home"
+            width="1200"
+            height="1400"
+            loading="lazy"
+            decoding="async"
+            >
+        </div>
+
+        <div class="about-introduction-content">
+            <p class="eyebrow">The concept</p>
+            <h2>One place to organize everyday household support.</h2>
+
+            <p>
+            Finding help is only one part of a home-service experience.
+            Customers also need clear appointments, visible assignments and
+            reliable progress information.
+            </p>
+
+            <p>
+            HomeStride brings those stages into one connected workflow.
+            Customers submit requests, administrators coordinate suitable
+            technicians, and technicians record progress through completion.
+            </p>
+
+            <div class="about-statistics">
+            <div>
+                <strong>7</strong>
+                <span>Service categories</span>
+            </div>
+
+            <div>
+                <strong>3</strong>
+                <span>Platform roles</span>
+            </div>
+
+            <div>
+                <strong>4</strong>
+                <span>Request stages</span>
+            </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <section class="section about-principles">
+        <div class="public-container">
+        <div class="centered-heading">
+            <p class="eyebrow">Platform principles</p>
+            <h2>Built around clarity, accountability and practical use.</h2>
+
+            <p>
+            The platform’s features support a straightforward service
+            experience for every role.
+            </p>
+        </div>
+
+        <div class="about-principles-grid">
+            <article>
+            <span>01</span>
+            <h3>Clear Information</h3>
+            <p>
+                Service details, starting prices, appointment preferences and
+                request statuses remain easy to find.
+            </p>
+            </article>
+
+            <article>
+            <span>02</span>
+            <h3>Defined Ownership</h3>
+            <p>
+                Each request moves from customer submission to administrative
+                review and technician responsibility.
+            </p>
+            </article>
+
+            <article>
+            <span>03</span>
+            <h3>Visible Progress</h3>
+            <p>
+                Status history and technician notes help customers understand
+                what has happened at every stage.
+            </p>
+            </article>
+
+            <article>
+            <span>04</span>
+            <h3>Role-Based Access</h3>
+            <p>
+                Customers, administrators and technicians receive separate
+                dashboards with appropriate information and actions.
+            </p>
+            </article>
+        </div>
+        </div>
+    </section>
+
+    <section class="section about-technology">
+        <div class="public-container about-technology-layout">
+        <div>
+            <p class="eyebrow eyebrow-light">Behind the platform</p>
+            <h2>A complete portfolio demonstration—not only a landing page.</h2>
+
+            <p>
+            HomeStride combines a responsive public website with secure
+            authentication, REST API endpoints, role permissions and
+            persistent PostgreSQL data.
+            </p>
+        </div>
+
+        <dl class="technology-list">
+            <div>
+            <dt>Frontend</dt>
+            <dd>HTML, CSS and JavaScript</dd>
+            </div>
+
+            <div>
+            <dt>Backend</dt>
+            <dd>Node.js and Express</dd>
+            </div>
+
+            <div>
+            <dt>Database</dt>
+            <dd>PostgreSQL</dd>
+            </div>
+
+            <div>
+            <dt>Security</dt>
+            <dd>JWT authentication, password hashing and role authorization</dd>
+            </div>
+
+            <div>
+            <dt>Core workflow</dt>
+            <dd>Requests, assignments, status updates and progress history</dd>
+            </div>
+        </dl>
+        </div>
+    </section>
+
+    <section class="section portfolio-disclosure">
+        <div class="public-container portfolio-disclosure-content">
+        <p class="eyebrow">Portfolio disclosure</p>
+        <h2>HomeStride is a fictional demonstration project.</h2>
+
+        <p>
+            The company, service prices, staff profiles and operational details
+            shown on this website are created for portfolio purposes. They do
+            not represent a currently operating home-services business.
+        </p>
+        </div>
+    </section>
+
+    <section class="section public-cta">
+        <div class="public-container public-cta-content">
+        <div>
+            <p class="eyebrow eyebrow-light">Explore the workflow</p>
+            <h2>See how HomeStride manages a service from start to finish.</h2>
+        </div>
+
+        <a class="button button-primary" href="how-it-works.html">
+            See How It Works
+        </a>
+        </div>
+    </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="public-container footer-grid">
+        <div>
+            <a class="brand footer-brand" href="../index.html">
+            <span class="brand-mark" aria-hidden="true">H</span>
+
+            <span>
+                <strong>HomeStride</strong>
+                <small>Reliable care. Right at home.</small>
+            </span>
+            </a>
+
+            <p>
+            A fictional full-stack home-services platform
+            created as a professional portfolio project.
+            </p>
+        </div>
+
+        <div>
+            <h2>Explore</h2>
+            <a href="services.html">Services</a>
+            <a href="how-it-works.html">How It Works</a>
+            <a href="about.html">About HomeStride</a>
+        </div>
+
+        <div>
+            <h2>Account</h2>
+            <a href="../auth/register.html">Create Account</a>
+            <a href="../auth/login.html">Sign In</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        </div>
+
+        <div class="public-container footer-bottom">
+        <p>© <span id="currentYear"></span> HomeStride Services.</p>
+        <p>Fictional portfolio demonstration.</p>
+        </div>
+    </footer>
+    </body>
+</html>
