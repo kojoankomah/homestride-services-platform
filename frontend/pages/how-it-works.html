@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        >
+
+        <title>How HomeStride Works | Home Services Platform</title>
+
+        <meta
+            name="description"
+            content="Learn how customers request services, administrators assign technicians and HomeStride tracks household work through completion."
+        >
+
+        <link
+            rel="stylesheet"
+            href="../assets/css/style.css"
+        >
+
+        <script src="../assets/js/api.js" defer></script>
+        <script src="../assets/js/public.js" defer></script>
+
+    </head>
+
+    <body class="public-page" data-page="how-it-works">
+    <a class="skip-link" href="#mainContent">
+        Skip to main content
+    </a>
+
+    <header class="site-header">
+        <div class="public-container header-content">
+        <a class="brand" href="../index.html">
+            <span class="brand-mark" aria-hidden="true">H</span>
+
+            <span>
+            <strong>HomeStride</strong>
+            <small>Reliable care. Right at home.</small>
+            </span>
+        </a>
+
+        <button
+            class="public-navigation-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="primaryNavigation"
+            data-public-navigation-toggle
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+            <span class="screen-reader-only">Open menu</span>
+        </button>
+
+        <nav
+            class="primary-navigation"
+            id="primaryNavigation"
+            aria-label="Primary navigation"
+            data-public-navigation
+        >
+            <a href="../index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a class="is-active" href="how-it-works.html" aria-current="page">How It Works</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+            <a class="header-login" href="../auth/login.html">
+            Sign In
+            </a>
+
+            <a
+            class="button button-primary"
+            href="../auth/register.html"
+            >
+            Request a Service
+            </a>
+        </div>
+        </div>
+    </header>
+
+    <main id="mainContent">
+        <section class="public-page-hero">
+            <div class="public-container public-page-hero-content">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="../index.html">Home</a>
+                <span aria-hidden="true">/</span>
+                <span>How It Works</span>
+            </nav>
+
+            <p class="eyebrow eyebrow-light">
+                One connected service workflow
+            </p>
+
+            <h1>From household problem to completed service.</h1>
+
+            <p>
+                HomeStride connects customers, administrators and technicians
+                through a clear request and progress-tracking process.
+            </p>
+            </div>
+        </section>
+
+        <section
+            class="section workflow-section"
+            aria-labelledby="workflowTitle"
+        >
+            <div class="public-container">
+            <div class="section-heading">
+                <div>
+                <p class="eyebrow">The service journey</p>
+                <h2 id="workflowTitle">
+                    Four stages keep every request organized.
+                </h2>
+                </div>
+
+                <p>
+                Each role receives the information and actions needed at the
+                appropriate stage of the service.
+                </p>
+            </div>
+
+            <ol class="workflow-list">
+                <li>
+                <span class="workflow-number">01</span>
+
+                <div>
+                    <p class="workflow-role">Customer</p>
+                    <h3>Submit the Request</h3>
+                    <p>
+                    Select a service, choose or add an address, provide a
+                    preferred appointment time and describe the work required.
+                    </p>
+                </div>
+
+                <strong>Pending</strong>
+                </li>
+
+                <li>
+                <span class="workflow-number">02</span>
+
+                <div>
+                    <p class="workflow-role">Administrator</p>
+                    <h3>Review and Assign</h3>
+                    <p>
+                    Review the request details and assign an available
+                    technician whose skills match the selected service.
+                    </p>
+                </div>
+
+                <strong>Assigned</strong>
+                </li>
+
+                <li>
+                <span class="workflow-number">03</span>
+
+                <div>
+                    <p class="workflow-role">Technician</p>
+                    <h3>Begin the Work</h3>
+                    <p>
+                    View the assigned job, begin the service and provide a note
+                    that becomes part of the request’s status history.
+                    </p>
+                </div>
+
+                <strong>In Progress</strong>
+                </li>
+
+                <li>
+                <span class="workflow-number">04</span>
+
+                <div>
+                    <p class="workflow-role">Technician and Customer</p>
+                    <h3>Complete and Track</h3>
+                    <p>
+                    Mark the work as completed while the customer retains a
+                    visible record of the request and its progress timeline.
+                    </p>
+                </div>
+
+                <strong>Completed</strong>
+                </li>
+            </ol>
+            </div>
+        </section>
+
+        <section class="section platform-roles">
+            <div class="public-container">
+            <div class="centered-heading">
+                <p class="eyebrow">Role-specific experiences</p>
+                <h2>One platform with three focused dashboards.</h2>
+
+                <p>
+                Each dashboard presents the information and controls relevant
+                to its user.
+                </p>
+            </div>
+
+            <div class="platform-role-grid">
+                <article>
+                <span>01</span>
+                <h3>Customer Dashboard</h3>
+                <p>
+                    Create service requests, manage addresses, review assignments
+                    and follow progress history.
+                </p>
+
+                <ul>
+                    <li>Request household services</li>
+                    <li>Track current statuses</li>
+                    <li>Review completed work</li>
+                </ul>
+                </article>
+
+                <article>
+                <span>02</span>
+                <h3>Administrator Dashboard</h3>
+                <p>
+                    Review incoming requests, search records, monitor totals and
+                    assign suitable technicians.
+                </p>
+
+                <ul>
+                    <li>Manage service requests</li>
+                    <li>View technician skills</li>
+                    <li>Coordinate assignments</li>
+                </ul>
+                </article>
+
+                <article>
+                <span>03</span>
+                <h3>Technician Dashboard</h3>
+                <p>
+                    View assigned jobs and record the transition from assigned
+                    work to active and completed service.
+                </p>
+
+                <ul>
+                    <li>Review job information</li>
+                    <li>Add progress notes</li>
+                    <li>Complete assigned work</li>
+                </ul>
+                </article>
+            </div>
+            </div>
+        </section>
+
+        <section class="section status-guide">
+            <div class="public-container status-guide-layout">
+            <div>
+                <p class="eyebrow eyebrow-light">Status guide</p>
+                <h2>Know exactly what each request status means.</h2>
+
+                <p>
+                Consistent status labels make the next stage of every service
+                request easier to understand.
+                </p>
+            </div>
+
+            <dl class="status-guide-list">
+                <div>
+                <dt><span class="status-dot pending"></span>Pending</dt>
+                <dd>The request has been submitted and awaits review.</dd>
+                </div>
+
+                <div>
+                <dt><span class="status-dot assigned"></span>Assigned</dt>
+                <dd>A technician has been selected for the service.</dd>
+                </div>
+
+                <div>
+                <dt><span class="status-dot in-progress"></span>In Progress</dt>
+                <dd>The assigned technician has started the work.</dd>
+                </div>
+
+                <div>
+                <dt><span class="status-dot completed"></span>Completed</dt>
+                <dd>The service has been marked as finished.</dd>
+                </div>
+            </dl>
+            </div>
+        </section>
+
+        <section class="section public-cta">
+            <div class="public-container public-cta-content">
+            <div>
+                <p class="eyebrow eyebrow-light">Ready to begin?</p>
+                <h2>Submit and track your next home-service request.</h2>
+            </div>
+
+            <a
+                class="button button-primary"
+                href="../auth/register.html"
+            >
+                Create Customer Account
+            </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="public-container footer-grid">
+        <div>
+            <a class="brand footer-brand" href="../index.html">
+            <span class="brand-mark" aria-hidden="true">H</span>
+
+            <span>
+                <strong>HomeStride</strong>
+                <small>Reliable care. Right at home.</small>
+            </span>
+            </a>
+
+            <p>
+            A fictional full-stack home-services platform
+            created as a professional portfolio project.
+            </p>
+        </div>
+
+        <div>
+            <h2>Explore</h2>
+            <a href="services.html">Services</a>
+            <a href="how-it-works.html">How It Works</a>
+            <a href="about.html">About HomeStride</a>
+        </div>
+
+        <div>
+            <h2>Account</h2>
+            <a href="../auth/register.html">Create Account</a>
+            <a href="../auth/login.html">Sign In</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        </div>
+
+        <div class="public-container footer-bottom">
+        <p>© <span id="currentYear"></span> HomeStride Services.</p>
+        <p>Fictional portfolio demonstration.</p>
+        </div>
+    </footer>
+    </body>
+</html>
