@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        >
+
+        <title>Contact HomeStride | Home Services Platform</title>
+
+        <meta
+            name="description"
+            content="Contact HomeStride about the fictional home-services platform or submit a demonstration enquiry."
+        >
+
+        <link
+            rel="stylesheet"
+            href="../assets/css/style.css"
+        >
+
+        <script src="../assets/js/api.js" defer></script>
+        <script src="../assets/js/public.js" defer></script>
+        <script src="../assets/js/contact.js" defer></script>
+    </head>
+
+    <body class="public-page" data-page="contact">
+    <a class="skip-link" href="#mainContent">
+        Skip to main content
+    </a>
+
+    <header class="site-header">
+        <div class="public-container header-content">
+        <a class="brand" href="../index.html">
+            <span class="brand-mark" aria-hidden="true">H</span>
+
+            <span>
+            <strong>HomeStride</strong>
+            <small>Reliable care. Right at home.</small>
+            </span>
+        </a>
+
+        <button
+            class="public-navigation-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="primaryNavigation"
+            data-public-navigation-toggle
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+            <span class="screen-reader-only">Open menu</span>
+        </button>
+
+        <nav
+            class="primary-navigation"
+            id="primaryNavigation"
+            aria-label="Primary navigation"
+            data-public-navigation
+        >
+            <a href="../index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="how-it-works.html">How It Works</a>
+            <a  href="about.html">About</a>
+            <a class="is-active" href="contact.html" aria-current="page">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+            <a class="header-login" href="../auth/login.html">
+            Sign In
+            </a>
+
+            <a
+            class="button button-primary"
+            href="../auth/register.html"
+            >
+            Request a Service
+            </a>
+        </div>
+        </div>
+    </header>
+
+    <main id="mainContent">
+    <section class="public-page-hero">
+        <div class="public-container public-page-hero-content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a>
+            <span aria-hidden="true">/</span>
+            <span>Contact</span>
+        </nav>
+
+        <p class="eyebrow eyebrow-light">Contact HomeStride</p>
+        <h1>Have a question about the platform?</h1>
+
+        <p>
+            Use the demonstration form to show how a general enquiry could be
+            prepared on a complete HomeStride website.
+        </p>
+        </div>
+    </section>
+
+    <section class="section contact-page-section">
+        <div class="public-container contact-page-layout">
+        <div class="contact-page-information">
+            <p class="eyebrow">Contact information</p>
+            <h2>Choose the right place to begin.</h2>
+
+            <p>
+            Service requests should be submitted through a customer account.
+            This contact form is intended for general platform enquiries.
+            </p>
+
+            <div class="contact-page-details">
+            <div>
+                <span>Email</span>
+                <a href="mailto:hello@homestride.example">
+                hello@homestride.example
+                </a>
+            </div>
+
+            <div>
+                <span>Telephone</span>
+                <a href="tel:+233000000000">
+                +233 00 000 0000
+                </a>
+            </div>
+
+            <div>
+                <span>Location represented</span>
+                <p>Cape Coast, Central Region, Ghana</p>
+            </div>
+
+            <div>
+                <span>Office hours represented</span>
+                <p>Monday–Friday, 8:00 AM–5:00 PM</p>
+            </div>
+            </div>
+
+            <div class="contact-service-note">
+            <strong>Need household assistance?</strong>
+
+            <p>
+                Create a customer account to submit and track a structured
+                service request.
+            </p>
+
+            <a href="../auth/register.html">
+                Create Customer Account
+            </a>
+            </div>
+        </div>
+
+        <div class="contact-form-wrapper">
+            <p class="contact-form-heading">
+            Send a demonstration enquiry
+            </p>
+
+            <form id="contactForm" class="contact-form" novalidate>
+            <div class="contact-form-row">
+                <div class="form-field">
+                <label for="contactName">Full name</label>
+                <input
+                    type="text"
+                    id="contactName"
+                    name="contactName"
+                    autocomplete="name"
+                    required
+                >
+                <small
+                    class="field-error"
+                    id="contactNameError"
+                ></small>
+                </div>
+
+                <div class="form-field">
+                <label for="contactEmail">Email address</label>
+                <input
+                    type="email"
+                    id="contactEmail"
+                    name="contactEmail"
+                    autocomplete="email"
+                    required
+                >
+                <small
+                    class="field-error"
+                    id="contactEmailError"
+                ></small>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label for="contactTopic">Enquiry topic</label>
+                <select
+                id="contactTopic"
+                name="contactTopic"
+                required
+                >
+                <option value="">Select a topic</option>
+                <option value="General platform question">
+                    General platform question
+                </option>
+                <option value="Account support">
+                    Account support
+                </option>
+                <option value="Service information">
+                    Service information
+                </option>
+                <option value="Partnership enquiry">
+                    Partnership enquiry
+                </option>
+                </select>
+                <small
+                class="field-error"
+                id="contactTopicError"
+                ></small>
+            </div>
+
+            <div class="form-field">
+                <label for="contactMessage">Message</label>
+                <textarea
+                id="contactMessage"
+                name="contactMessage"
+                rows="7"
+                placeholder="Enter your question or enquiry."
+                required
+                ></textarea>
+                <small
+                class="field-error"
+                id="contactMessageError"
+                ></small>
+            </div>
+
+            <button class="button button-primary" type="submit">
+                Prepare Enquiry
+            </button>
+
+            <p class="contact-form-disclaimer">
+                This portfolio demonstration does not transmit or store the
+                information entered into this form.
+            </p>
+
+            <div
+                class="contact-form-success"
+                id="contactFormSuccess"
+                role="status"
+                aria-live="polite"
+                hidden
+            >
+                <strong>Enquiry prepared successfully.</strong>
+                <p>
+                On a live business platform, this message would now be
+                securely delivered to the appropriate team.
+                </p>
+            </div>
+            </form>
+        </div>
+        </div>
+    </section>
+
+    <section class="section contact-options">
+        <div class="public-container">
+        <div class="centered-heading">
+            <p class="eyebrow">Useful destinations</p>
+            <h2>Go directly to the support you need.</h2>
+        </div>
+
+        <div class="contact-options-grid">
+            <article>
+            <span>01</span>
+            <h3>Explore Services</h3>
+            <p>
+                Review available categories, starting prices and expected
+                service durations.
+            </p>
+            <a href="services.html">View Services</a>
+            </article>
+
+            <article>
+            <span>02</span>
+            <h3>Request Home Support</h3>
+            <p>
+                Sign in as a customer to provide the service, location and
+                preferred appointment details.
+            </p>
+            <a href="../auth/login.html">Sign In</a>
+            </article>
+
+            <article>
+            <span>03</span>
+            <h3>Understand the Process</h3>
+            <p>
+                See how customers, administrators and technicians work
+                through each request stage.
+            </p>
+            <a href="how-it-works.html">How It Works</a>
+            </article>
+        </div>
+        </div>
+    </section>
+    </main>
+
+
+    <footer class="site-footer">
+        <div class="public-container footer-grid">
+        <div>
+            <a class="brand footer-brand" href="../index.html">
+            <span class="brand-mark" aria-hidden="true">H</span>
+
+            <span>
+                <strong>HomeStride</strong>
+                <small>Reliable care. Right at home.</small>
+            </span>
+            </a>
+
+            <p>
+            A fictional full-stack home-services platform
+            created as a professional portfolio project.
+            </p>
+        </div>
+
+        <div>
+            <h2>Explore</h2>
+            <a href="services.html">Services</a>
+            <a href="how-it-works.html">How It Works</a>
+            <a href="about.html">About HomeStride</a>
+        </div>
+
+        <div>
+            <h2>Account</h2>
+            <a href="../auth/register.html">Create Account</a>
+            <a href="../auth/login.html">Sign In</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        </div>
+
+        <div class="public-container footer-bottom">
+        <p>© <span id="currentYear"></span> HomeStride Services.</p>
+        <p>Fictional portfolio demonstration.</p>
+        </div>
+    </footer>
+    </body>
+</html>
