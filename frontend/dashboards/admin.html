@@ -254,6 +254,14 @@
               <p class="eyebrow">Field team</p>
               <h2>Technicians</h2>
             </div>
+
+            <button
+              type="button"
+              class="button button-primary"
+              id="openTechnicianDialog"
+            >
+              Add Technician
+            </button>
           </div>
 
           <div
@@ -341,6 +349,194 @@
           id="confirmAssignment"
         >
           Assign Technician
+        </button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="status-dialog" id="technicianDialog">
+    <form
+      class="status-dialog-content technician-form"
+      id="technicianForm"
+      novalidate
+    >
+      <button
+        type="button"
+        class="dialog-close"
+        id="closeTechnicianDialog"
+        aria-label="Close dialog"
+      >
+        ×
+      </button>
+
+      <p class="eyebrow">Field team account</p>
+      <h2>Add a technician</h2>
+
+      <p>
+        Create the technician’s account and select the
+        services they are qualified to handle.
+      </p>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="technicianFullName">
+            Full name
+          </label>
+
+          <input
+            type="text"
+            id="technicianFullName"
+            autocomplete="name"
+            required
+          >
+
+          <small
+            class="field-error"
+            id="technicianFullNameError"
+          ></small>
+        </div>
+
+        <div class="form-field">
+          <label for="technicianEmployeeCode">
+            Employee code
+          </label>
+
+          <input
+            type="text"
+            id="technicianEmployeeCode"
+            placeholder="Example: TECH-002"
+            required
+          >
+
+          <small
+            class="field-error"
+            id="technicianEmployeeCodeError"
+          ></small>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="technicianEmail">
+            Email address
+          </label>
+
+          <input
+            type="email"
+            id="technicianEmail"
+            autocomplete="email"
+            required
+          >
+
+          <small
+            class="field-error"
+            id="technicianEmailError"
+          ></small>
+        </div>
+
+        <div class="form-field">
+          <label for="technicianPhone">
+            Telephone number
+          </label>
+
+          <input
+            type="tel"
+            id="technicianPhone"
+            autocomplete="tel"
+            required
+          >
+
+          <small
+            class="field-error"
+            id="technicianPhoneError"
+          ></small>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="technicianSpecialization">
+            Specialization
+          </label>
+
+          <input
+            type="text"
+            id="technicianSpecialization"
+            placeholder="Example: Plumbing and repairs"
+            required
+          >
+
+          <small
+            class="field-error"
+            id="technicianSpecializationError"
+          ></small>
+        </div>
+
+        <div class="form-field">
+          <label for="technicianPassword">
+            Temporary password
+          </label>
+
+          <input
+            type="password"
+            id="technicianPassword"
+            autocomplete="new-password"
+            minlength="8"
+            required
+          >
+
+          <small
+            class="field-error"
+            id="technicianPasswordError"
+          ></small>
+        </div>
+      </div>
+
+      <fieldset class="technician-skills-fieldset">
+        <legend>Service skills</legend>
+
+        <div
+          class="technician-skills-grid"
+          id="technicianSkills"
+        >
+          <p class="loading-message">
+            Loading services...
+          </p>
+        </div>
+
+        <small
+          class="field-error"
+          id="technicianServiceIdsError"
+        ></small>
+      </fieldset>
+
+      <p class="form-help">
+        The password must contain at least eight characters,
+        including a letter and a number.
+      </p>
+
+      <p
+        class="form-message"
+        id="technicianFormMessage"
+        role="status"
+        aria-live="polite"
+      ></p>
+
+      <div class="dialog-actions">
+        <button
+          type="button"
+          class="button button-secondary"
+          id="cancelTechnician"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          class="button button-primary"
+          id="createTechnician"
+        >
+          Create Technician
         </button>
       </div>
     </form>

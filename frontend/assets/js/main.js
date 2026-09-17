@@ -241,3 +241,268 @@ window.HomeStrideUI = {
 };
 
 initializeProtectedPage();
+
+const technicianDialog = document.querySelector(
+  "#technicianDialog"
+);
+
+const technicianForm = document.querySelector(
+  "#technicianForm"
+);
+
+const technicianSkills = document.querySelector(
+  "#technicianSkills"
+);
+
+const technicianFormMessage = document.querySelector(
+  "#technicianFormMessage"
+);
+
+const createTechnicianButton = document.querySelector(
+  "#createTechnician"
+);
+
+const technicianErrorElements = {
+  fullName: document.querySelector(
+    "#technicianFullNameError"
+  ),
+  email: document.querySelector(
+    "#technicianEmailError"
+  ),
+  phone: document.querySelector(
+    "#technicianPhoneError"
+  ),
+  password: document.querySelector(
+    "#technicianPasswordError"
+  ),
+  employeeCode: document.querySelector(
+    "#technicianEmployeeCodeError"
+  ),
+  specialization: document.querySelector(
+    "#technicianSpecializationError"
+  ),
+  serviceIds: document.querySelector(
+    "#technicianServiceIdsError"
+  )
+};
+
+function clearTechnicianErrors() {
+  Object.values(technicianErrorElements).forEach(
+    (element) => {
+      if (element) {
+        element.textContent = "";
+      }
+    }
+  );
+
+  technicianForm
+    ?.querySelectorAll(".has-error")
+    .forEach((element) => {
+      element.classList.remove("has-error");
+    });
+
+  if (technicianFormMessage) {
+    technicianFormMessage.textContent = "";
+    technicianFormMessage.className = "form-message";
+  }
+}
+
+function showTechnicianErrors(errors = {}) {
+  Object.entries(errors).forEach(
+    ([fieldName, message]) => {
+      const errorElement =
+        technicianErrorElements[fieldName];
+
+      if (!errorElement) {
+        return;
+      }
+
+      errorElement.textContent = message;
+
+      const fieldWrapper = errorElement.closest(
+        ".form-field, .technician-skills-fieldset"
+      );
+
+      fieldWrapper?.classList.add("has-error");
+    }
+  );
+}
+
+function createTechnicianSkillOption(service) {
+  const label = createElement(
+    "label",
+    "technician-skill-option"
+  );
+
+  const checkbox = document.createElement("input");
+
+  checkbox.type = "checkbox";
+  checkbox.name = "technicianService";
+  checkbox.value = service.id;
+
+  const text = createElement(
+    "span",
+    "",
+    service.name
+  );
+
+  label.append(checkbox, text);
+
+  return label;
+}
+
+async function loadTechnicianServices() {
+  technicianSkills.replaceChildren(
+    createElement(
+      "p",
+      "loading-message",
+      "Loading services..."
+    )
+  );
+
+  try {
+    const data = await window.HomeStrideAPI.request(
+      "/services"
+    );
+
+    technicianSkills.replaceChildren();
+
+    data.services.forEach((service) => {
+      technicianSkills.append(
+        createTechnicianSkillOption(service)
+      );
+    });
+  } catch (error) {
+    technicianSkills.replaceChildren(
+      createElement(
+        "p",
+        "form-message is-error",
+        error.message
+      )
+    );
+  }
+}
+
+function closeTechnicianDialog() {
+  technicianDialog?.close();
+  technicianForm?.reset();
+  clearTechnicianErrors();
+}
+
+document
+  .querySelector("#openTechnicianDialog")
+  ?.addEventListener("click", async () => {
+    technicianForm?.reset();
+    clearTechnicianErrors();
+    technicianDialog?.showModal();
+
+    await loadTechnicianServices();
+  });
+
+document
+  .querySelector("#closeTechnicianDialog")
+  ?.addEventListener(
+    "click",
+    closeTechnicianDialog
+  );
+
+document
+  .querySelector("#cancelTechnician")
+  ?.addEventListener(
+    "click",
+    closeTechnicianDialog
+  );
+
+technicianDialog?.addEventListener(
+  "click",
+  (event) => {
+    if (event.target === technicianDialog) {
+      closeTechnicianDialog();
+    }
+  }
+);
+
+technicianForm?.addEventListener(
+  "submit",
+  async (event) => {
+    event.preventDefault();
+    clearTechnicianErrors();
+
+    const serviceIds = Array.from(
+      technicianForm.querySelectorAll(
+        'input[name="technicianService"]:checked'
+      )
+    ).map((checkbox) => Number(checkbox.value));
+
+    const technicianData = {
+      fullName: document
+        .querySelector("#technicianFullName")
+        .value.trim(),
+
+      email: document
+        .querySelector("#technicianEmail")
+        .value.trim(),
+
+      phone: document
+        .querySelector("#technicianPhone")
+        .value.trim(),
+
+      password: document.querySelector(
+        "#technicianPassword"
+      ).value,
+
+      employeeCode: document
+        .querySelector("#technicianEmployeeCode")
+        .value.trim(),
+
+      specialization: document
+        .querySelector("#technicianSpecialization")
+        .value.trim(),
+
+      serviceIds
+    };
+
+    createTechnicianButton.disabled = true;
+    createTechnicianButton.textContent =
+      "Creating Technician...";
+
+    try {
+      const data =
+        await window.HomeStrideAPI.request(
+          "/technicians",
+          {
+            method: "POST",
+            body: JSON.stringify(technicianData)
+          }
+        );
+
+      closeTechnicianDialog();
+      await loadAdminData();
+
+      pageMessage.textContent = data.message;
+      pageMessage.className =
+        "page-message is-success";
+
+      document
+        .querySelector("#techniciansSection")
+        ?.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+    } catch (error) {
+      showTechnicianErrors(
+        error.data?.errors || {}
+      );
+
+      technicianFormMessage.textContent =
+        error.message;
+
+      technicianFormMessage.className =
+        "form-message is-error";
+    } finally {
+      createTechnicianButton.disabled = false;
+      createTechnicianButton.textContent =
+        "Create Technician";
+    }
+  }
+);

@@ -4168,3 +4168,111 @@ a {
     width: 100%;
   }
 }
+
+
+
+
+
+/***************** Add technician form **************/
+
+#technicianDialog {
+  width: min(94vw, 760px);
+  max-height: 92vh;
+  overflow-y: auto;
+}
+
+.technician-form {
+  display: grid;
+  gap: 1.3rem;
+}
+
+.technician-form .form-row {
+  display: grid;
+  gap: 1.2rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.technician-skills-fieldset {
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-small);
+  padding: 1rem;
+}
+
+.technician-skills-fieldset legend {
+  padding-inline: 0.4rem;
+  color: var(--forest-dark);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.technician-skills-fieldset.has-error {
+  border-color: var(--danger);
+}
+
+.technician-skills-grid {
+  display: grid;
+  gap: 0.7rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.technician-skill-option {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-small);
+  background: #fcfdfc;
+  cursor: pointer;
+  padding: 0.8rem;
+  color: var(--charcoal);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.technician-skill-option:hover {
+  border-color: var(--gold);
+  background: var(--cream);
+}
+
+.technician-skill-option:has(input:checked) {
+  border-color: var(--gold);
+  background: var(--cream);
+}
+
+.technician-skill-option input {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  accent-color: var(--gold);
+}
+
+.technician-form .form-help {
+  margin: -0.4rem 0 0;
+  color: var(--slate);
+  font-size: 0.72rem;
+}
+
+#createTechnician:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+@media (max-width: 640px) {
+  .technicians-panel .panel-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  #openTechnicianDialog {
+    width: 100%;
+  }
+
+  .technician-form .form-row,
+  .technician-skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
