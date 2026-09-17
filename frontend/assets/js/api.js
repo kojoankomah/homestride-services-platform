@@ -1,4 +1,12 @@
-const API_BASE_URL = "http://localhost:5000/api";
+const isLocalDevelopment = [
+  "localhost",
+  "127.0.0.1"
+].includes(window.location.hostname);
+
+const API_BASE_URL = isLocalDevelopment
+  ? "http://localhost:5000/api"
+  : "https://homestride-api.onrender.com/api";
+
 
 async function apiRequest(endpoint, options = {}) {
   const token = localStorage.getItem("homestrideToken");
@@ -41,7 +49,7 @@ async function apiRequest(endpoint, options = {}) {
   } catch (error) {
     if (error instanceof TypeError) {
       throw new Error(
-        "Unable to connect to HomeStride. Confirm that the backend server is running."
+        "Unable to connect to HomeStride. Please try again shortly."
       );
     }
 
