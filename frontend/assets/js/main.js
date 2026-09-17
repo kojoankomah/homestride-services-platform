@@ -152,6 +152,87 @@ navigationToggle?.addEventListener("click", () => {
   );
 });
 
+function updateDashboardNavigation() {
+  const navigationLinks = document.querySelectorAll(
+    ".dashboard-navigation a"
+  );
+
+  if (!navigationLinks.length) {
+    return;
+  }
+
+  const currentPath = window.location.pathname;
+  const currentHash = window.location.hash;
+
+  let matchingLink = null;
+
+  navigationLinks.forEach((link) => {
+    link.classList.remove("is-active");
+    link.removeAttribute("aria-current");
+
+    const linkUrl = new URL(link.href);
+
+    if (
+      currentHash &&
+      linkUrl.pathname === currentPath &&
+      linkUrl.hash === currentHash
+    ) {
+      matchingLink = link;
+    }
+  });
+
+  if (!matchingLink && !currentHash) {
+    matchingLink = Array.from(navigationLinks).find(
+      (link) => {
+        const linkUrl = new URL(link.href);
+
+        return (
+          linkUrl.pathname === currentPath &&
+          !linkUrl.hash
+        );
+      }
+    );
+  }
+
+  if (matchingLink) {
+    matchingLink.classList.add("is-active");
+    matchingLink.setAttribute("aria-current", "page");
+  }
+}
+
+document
+  .querySelectorAll(".dashboard-navigation a")
+  .forEach((link) => {
+    link.addEventListener("click", () => {
+      const linkUrl = new URL(link.href);
+
+      if (
+        linkUrl.pathname === window.location.pathname &&
+        linkUrl.hash
+      ) {
+        window.setTimeout(
+          updateDashboardNavigation,
+          0
+        );
+      }
+
+      navigationToggle?.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+      dashboardNavigation?.classList.remove("is-open");
+    });
+  });
+
+window.addEventListener(
+  "hashchange",
+  updateDashboardNavigation
+);
+
+updateDashboardNavigation();
+
+
 window.HomeStrideUI = {
   formatStatus,
   formatDate,

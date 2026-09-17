@@ -116,10 +116,16 @@ function updateAccountNavigation() {
   );
 
   if (loginLink) {
-    loginLink.textContent = "Dashboard";
-    loginLink.href =
-      dashboardPaths[user.role] ||
-      `${pathPrefix}index.html`;
+    loginLink.textContent = "Sign Out";
+    loginLink.href = "#";
+
+    loginLink.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      window.HomeStrideAPI.clearSession();
+      window.location.href =
+        `${pathPrefix}index.html`;
+    });
   }
 
   if (registerLink) {
