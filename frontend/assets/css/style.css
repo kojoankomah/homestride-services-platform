@@ -4276,3 +4276,35 @@ a {
     grid-template-columns: 1fr;
   }
 }
+
+
+
+
+/************* Account security *************/
+
+.sidebar-account-link {
+  display: inline-block;
+  margin-top: 0.35rem;
+  color: var(--gold);
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+}
+
+.sidebar-account-link:hover {
+  color: var(--white);
+}
+
+.form-message.is-success {
+  border-left: 4px solid var(--success);
+  background: #e8f4ec;
+  padding: 0.9rem;
+  color: var(--success);
+  font-weight: 700;
+}
+
+#changePasswordButton:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
