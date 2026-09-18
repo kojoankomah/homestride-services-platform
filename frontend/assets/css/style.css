@@ -4308,3 +4308,89 @@ a {
   cursor: wait;
   opacity: 0.7;
 }
+
+
+/*************** Technician management ***************/
+
+#technicianAvailabilityField[hidden],
+#technicianPasswordField[hidden] {
+  display: none;
+}
+
+.account-status {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.account-status.is-active {
+  background: #e8f4ec;
+  color: var(--success);
+}
+
+.account-status.is-inactive {
+  background: #f5e7e7;
+  color: #93352f;
+}
+
+.admin-technician-card.is-inactive {
+  border-style: dashed;
+  background: #f5f6f5;
+}
+
+.admin-technician-card.is-inactive
+  > :not(.technician-card-actions) {
+  opacity: 0.68;
+}
+
+.technician-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.2rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.2rem;
+}
+
+.technician-card-actions .button {
+  min-height: 42px;
+  flex: 1 1 auto;
+  font-size: 0.68rem;
+}
+
+.button-danger {
+  border: 1px solid #93352f;
+  background: #93352f;
+  color: var(--white);
+}
+
+.button-danger:hover {
+  border-color: #742721;
+  background: #742721;
+}
+
+.button-danger:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+@media (max-width: 520px) {
+  .technician-card-actions {
+    flex-direction: column;
+  }
+
+  .technician-card-actions .button {
+    width: 100%;
+  }
+}
+
+
+.technician-card-message {
+  margin: 1rem 0 0;
+}

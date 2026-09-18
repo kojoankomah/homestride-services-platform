@@ -28,7 +28,8 @@ async function apiRequest(endpoint, options = {}) {
       `${API_BASE_URL}${endpoint}`,
       {
         ...options,
-        headers
+        headers,
+        cache: "no-store"
       }
     );
 

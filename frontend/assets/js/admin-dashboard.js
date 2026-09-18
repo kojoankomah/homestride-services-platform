@@ -1,6 +1,8 @@
 let adminRequests = [];
 let adminTechnicians = [];
 let selectedRequestId = null;
+let selectedTechnicianId = null;
+let technicianMessageTimer = null;
 
 const adminRequestList = document.querySelector(
   "#adminRequestList"
@@ -29,6 +31,77 @@ const pageMessage = document.querySelector(
 const assignmentDialog = document.querySelector(
   "#assignmentDialog"
 );
+
+const technicianManagementMessage =
+  document.querySelector(
+    "#technicianManagementMessage"
+  );
+  
+  function showTechnicianManagementMessage(
+  message,
+  stateClass = ""
+) {
+  window.clearTimeout(technicianMessageTimer);
+
+  technicianManagementMessage.textContent = message;
+
+  technicianManagementMessage.className =
+    stateClass
+      ? `page-message ${stateClass}`
+      : "page-message";
+
+  if (!message) {
+    return;
+  }
+
+  technicianMessageTimer = window.setTimeout(() => {
+    technicianManagementMessage.textContent = "";
+    technicianManagementMessage.className =
+      "page-message";
+  }, 5000);
+}
+
+function showTechnicianCardMessage(
+  card,
+  message,
+  stateClass = ""
+) {
+  adminTechnicianGrid
+    .querySelectorAll(".technician-card-message")
+    .forEach((element) => {
+      element.remove();
+    });
+
+  if (!card || !message) {
+    return;
+  }
+
+  const messageElement = createElement(
+    "p",
+    `page-message technician-card-message ${stateClass}`,
+    message
+  );
+
+  messageElement.setAttribute("role", "status");
+  messageElement.setAttribute(
+    "aria-live",
+    "polite"
+  );
+
+  const actions = card.querySelector(
+    ".technician-card-actions"
+  );
+
+  if (actions) {
+    card.insertBefore(messageElement, actions);
+  } else {
+    card.append(messageElement);
+  }
+
+  window.setTimeout(() => {
+    messageElement.remove();
+  }, 5000);
+}
 
 function createElement(tagName, className, text) {
   const element = document.createElement(tagName);
@@ -303,6 +376,8 @@ function createTechnicianCard(technician) {
     "admin-technician-card"
   );
 
+  card.dataset.technicianCard = technician.id;
+
   const heading = createElement(
     "div",
     "technician-card-heading"
@@ -374,11 +449,61 @@ function createTechnicianCard(technician) {
 
   contact.append(emailLink, phoneLink);
 
+  const accountStatus = createElement(
+    "span",
+    technician.isActive
+      ? "account-status is-active"
+      : "account-status is-inactive",
+    technician.isActive
+      ? "Active account"
+      : "Inactive account"
+  );
+
+  const actions = createElement(
+    "div",
+    "technician-card-actions"
+  );
+
+  const editButton = createElement(
+    "button",
+    "button button-secondary",
+    "Edit Details"
+  );
+
+  editButton.type = "button";
+  editButton.dataset.editTechnician =
+    technician.id;
+
+  const statusButton = createElement(
+    "button",
+    technician.isActive
+      ? "button button-danger"
+      : "button button-primary",
+    technician.isActive
+      ? "Deactivate"
+      : "Reactivate"
+  );
+
+  statusButton.type = "button";
+  statusButton.dataset.toggleTechnician =
+    technician.id;
+
+  statusButton.dataset.nextActive =
+    String(!technician.isActive);
+
+  actions.append(editButton, statusButton);
+
+  if (!technician.isActive) {
+    card.classList.add("is-inactive");
+  }
+
   card.append(
     heading,
+    accountStatus,
     availability,
     skills,
-    contact
+    contact,
+    actions
   );
 
   return card;
@@ -392,7 +517,7 @@ function renderTechnicians() {
       createElement(
         "p",
         "loading-message",
-        "No active technicians were found."
+        "No technicians were found."
       )
     );
 
@@ -445,8 +570,9 @@ function openAssignmentDialog(requestId) {
   technicianField.append(placeholder);
 
   const suitableTechnicians = adminTechnicians.filter(
-    (technician) =>
-      technician.availabilityStatus === "available" &&
+  (technician) =>
+    technician.isActive &&
+    technician.availabilityStatus === "available" &&
       technician.skills.some(
         (skill) =>
           skill.id === serviceRequest.service.id
@@ -614,6 +740,541 @@ assignmentDialog?.addEventListener(
   (event) => {
     if (event.target === assignmentDialog) {
       assignmentDialog.close();
+    }
+  }
+);
+
+const technicianDialog = document.querySelector(
+  "#technicianDialog"
+);
+
+const technicianForm = document.querySelector(
+  "#technicianForm"
+);
+
+const technicianSkills = document.querySelector(
+  "#technicianSkills"
+);
+
+const technicianFormMessage = document.querySelector(
+  "#technicianFormMessage"
+);
+
+const createTechnicianButton = document.querySelector(
+  "#createTechnician"
+);
+
+const technicianErrorElements = {
+  fullName: document.querySelector(
+    "#technicianFullNameError"
+  ),
+  email: document.querySelector(
+    "#technicianEmailError"
+  ),
+  phone: document.querySelector(
+    "#technicianPhoneError"
+  ),
+  password: document.querySelector(
+    "#technicianPasswordError"
+  ),
+  employeeCode: document.querySelector(
+    "#technicianEmployeeCodeError"
+  ),
+  specialization: document.querySelector(
+    "#technicianSpecializationError"
+  ),
+  availabilityStatus: document.querySelector(
+    "#technicianAvailabilityError"
+  ),
+  serviceIds: document.querySelector(
+    "#technicianServiceIdsError"
+  )
+};
+
+function clearTechnicianErrors() {
+  Object.values(technicianErrorElements).forEach(
+    (element) => {
+      if (element) {
+        element.textContent = "";
+      }
+    }
+  );
+
+  technicianForm
+    ?.querySelectorAll(".has-error")
+    .forEach((element) => {
+      element.classList.remove("has-error");
+    });
+
+  if (technicianFormMessage) {
+    technicianFormMessage.textContent = "";
+    technicianFormMessage.className = "form-message";
+  }
+}
+
+function showTechnicianErrors(errors = {}) {
+  Object.entries(errors).forEach(
+    ([fieldName, message]) => {
+      const errorElement =
+        technicianErrorElements[fieldName];
+
+      if (!errorElement) {
+        return;
+      }
+
+      errorElement.textContent = message;
+
+      const fieldWrapper = errorElement.closest(
+        ".form-field, .technician-skills-fieldset"
+      );
+
+      fieldWrapper?.classList.add("has-error");
+    }
+  );
+}
+
+function createTechnicianSkillOption(
+  service,
+  selectedServiceIds = []
+) {
+  const label = createElement(
+    "label",
+    "technician-skill-option"
+  );
+
+  const checkbox = document.createElement("input");
+
+  checkbox.type = "checkbox";
+  checkbox.name = "technicianService";
+  checkbox.value = service.id;
+
+  checkbox.checked = selectedServiceIds.includes(
+    Number(service.id)
+  );
+
+  const text = createElement(
+    "span",
+    "",
+    service.name
+  );
+
+  label.append(checkbox, text);
+
+  return label;
+}
+
+async function loadTechnicianServices(
+  selectedServiceIds = []
+) {
+  technicianSkills.replaceChildren(
+    createElement(
+      "p",
+      "loading-message",
+      "Loading services..."
+    )
+  );
+
+  try {
+    const data = await window.HomeStrideAPI.request(
+      "/services"
+    );
+
+    technicianSkills.replaceChildren();
+
+    data.services.forEach((service) => {
+      technicianSkills.append(
+        createTechnicianSkillOption(
+          service,
+          selectedServiceIds
+        )
+      );
+    });
+  } catch (error) {
+    technicianSkills.replaceChildren(
+      createElement(
+        "p",
+        "form-message is-error",
+        error.message
+      )
+    );
+  }
+}
+
+function closeTechnicianDialog() {
+  technicianDialog?.close();
+  technicianForm?.reset();
+  clearTechnicianErrors();
+  selectedTechnicianId = null;
+}
+
+function prepareCreateTechnicianDialog() {
+  showTechnicianManagementMessage("");
+
+  selectedTechnicianId = null;
+
+  technicianForm.reset();
+  clearTechnicianErrors();
+
+  document.querySelector(
+    "#technicianDialogTitle"
+  ).textContent = "Add a technician";
+
+  document.querySelector(
+    "#technicianDialogDescription"
+  ).textContent =
+    "Create the technician’s account and select the services they are qualified to handle.";
+
+  const passwordField = document.querySelector(
+    "#technicianPasswordField"
+  );
+
+  const passwordInput = document.querySelector(
+    "#technicianPassword"
+  );
+
+  passwordField.hidden = false;
+  passwordInput.required = true;
+
+  document.querySelector(
+    "#technicianAvailabilityField"
+  ).hidden = true;
+
+  createTechnicianButton.textContent =
+    "Create Technician";
+}
+
+async function openEditTechnicianDialog(
+  technicianId
+) {
+  showTechnicianManagementMessage("");
+
+  const technician = adminTechnicians.find(
+    (item) => item.id === technicianId
+  );
+
+  if (!technician) {
+    return;
+  }
+
+  selectedTechnicianId = technicianId;
+
+  technicianForm.reset();
+  clearTechnicianErrors();
+
+  document.querySelector(
+    "#technicianDialogTitle"
+  ).textContent = "Edit technician";
+
+  document.querySelector(
+    "#technicianDialogDescription"
+  ).textContent =
+    "Update the technician’s account, availability and service skills.";
+
+  document.querySelector(
+    "#technicianFullName"
+  ).value = technician.fullName;
+
+  document.querySelector(
+    "#technicianEmail"
+  ).value = technician.email;
+
+  document.querySelector(
+    "#technicianPhone"
+  ).value = technician.phone;
+
+  document.querySelector(
+    "#technicianEmployeeCode"
+  ).value = technician.employeeCode;
+
+  document.querySelector(
+    "#technicianSpecialization"
+  ).value = technician.specialization;
+
+  const passwordField = document.querySelector(
+    "#technicianPasswordField"
+  );
+
+  const passwordInput = document.querySelector(
+    "#technicianPassword"
+  );
+
+  passwordField.hidden = true;
+  passwordInput.required = false;
+  passwordInput.value = "";
+
+  const availabilityField = document.querySelector(
+    "#technicianAvailabilityField"
+  );
+
+  availabilityField.hidden = false;
+
+  document.querySelector(
+    "#technicianAvailability"
+  ).value = technician.availabilityStatus;
+
+  createTechnicianButton.textContent =
+    "Save Changes";
+
+  technicianDialog.showModal();
+
+  await loadTechnicianServices(
+    technician.skills.map((skill) => skill.id)
+  );
+}
+
+document
+  .querySelector("#openTechnicianDialog")
+  ?.addEventListener("click", async () => {
+    prepareCreateTechnicianDialog();
+    technicianDialog.showModal();
+
+    await loadTechnicianServices();
+  });
+
+document
+  .querySelector("#closeTechnicianDialog")
+  ?.addEventListener(
+    "click",
+    closeTechnicianDialog
+  );
+
+document
+  .querySelector("#cancelTechnician")
+  ?.addEventListener(
+    "click",
+    closeTechnicianDialog
+  );
+
+technicianDialog?.addEventListener(
+  "click",
+  (event) => {
+    if (event.target === technicianDialog) {
+      closeTechnicianDialog();
+    }
+  }
+);
+
+technicianForm?.addEventListener(
+  "submit",
+  async (event) => {
+    event.preventDefault();
+    clearTechnicianErrors();
+
+    const isEditing =
+      Number.isInteger(selectedTechnicianId);
+
+    const serviceIds = Array.from(
+      technicianForm.querySelectorAll(
+        'input[name="technicianService"]:checked'
+      )
+    ).map((checkbox) => Number(checkbox.value));
+
+    const technicianData = {
+      fullName: document
+        .querySelector("#technicianFullName")
+        .value.trim(),
+
+      email: document
+        .querySelector("#technicianEmail")
+        .value.trim(),
+
+      phone: document
+        .querySelector("#technicianPhone")
+        .value.trim(),
+
+      employeeCode: document
+        .querySelector("#technicianEmployeeCode")
+        .value.trim(),
+
+      specialization: document
+        .querySelector("#technicianSpecialization")
+        .value.trim(),
+
+      serviceIds
+    };
+
+    if (isEditing) {
+      technicianData.availabilityStatus =
+        document.querySelector(
+          "#technicianAvailability"
+        ).value;
+    } else {
+      technicianData.password =
+        document.querySelector(
+          "#technicianPassword"
+        ).value;
+    }
+
+    createTechnicianButton.disabled = true;
+
+    createTechnicianButton.textContent =
+      isEditing
+        ? "Saving Changes..."
+        : "Creating Technician...";
+
+    try {
+      const endpoint = isEditing
+        ? `/technicians/${selectedTechnicianId}`
+        : "/technicians";
+
+      const data =
+        await window.HomeStrideAPI.request(
+          endpoint,
+          {
+            method: isEditing ? "PATCH" : "POST",
+            body: JSON.stringify(technicianData)
+          }
+        );
+
+      closeTechnicianDialog();
+      await loadAdminData();
+
+      showTechnicianManagementMessage(
+        data.message,
+        "is-success"
+      );
+
+      document
+        .querySelector("#techniciansSection")
+        ?.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+    } catch (error) {
+      showTechnicianErrors(
+        error.data?.errors || {}
+      );
+
+      technicianFormMessage.textContent =
+        error.message;
+
+      technicianFormMessage.className =
+        "form-message is-error";
+    } finally {
+      createTechnicianButton.disabled = false;
+
+      createTechnicianButton.textContent =
+        isEditing
+          ? "Save Changes"
+          : "Create Technician";
+    }
+  }
+);
+
+adminTechnicianGrid?.addEventListener(
+  "click",
+  async (event) => {
+    const editButton = event.target.closest(
+      "[data-edit-technician]"
+    );
+
+    if (editButton) {
+      await openEditTechnicianDialog(
+        Number(editButton.dataset.editTechnician)
+      );
+
+      return;
+    }
+
+    const statusButton = event.target.closest(
+      "[data-toggle-technician]"
+    );
+
+    if (!statusButton) {
+      return;
+    }
+
+    const technicianId = Number(
+      statusButton.dataset.toggleTechnician
+    );
+
+    const nextActive =
+      statusButton.dataset.nextActive === "true";
+
+    const technician = adminTechnicians.find(
+      (item) => item.id === technicianId
+    );
+
+    const technicianCard = statusButton.closest(
+      ".admin-technician-card"
+    );
+
+    if (!technician || !technicianCard) {
+      return;
+    }
+
+    if (
+      !nextActive &&
+      technician.availabilityStatus === "assigned"
+    ) {
+      showTechnicianCardMessage(
+        technicianCard,
+        "This technician cannot be deactivated while assigned work is active.",
+        "is-error"
+      );
+
+      return;
+    }
+
+    const confirmationMessage = nextActive
+      ? `Reactivate ${technician.fullName}'s account?`
+      : `Deactivate ${technician.fullName}'s account? They will no longer be able to sign in or receive new assignments.`;
+
+    const actionWasConfirmed = window.confirm(
+      confirmationMessage
+    );
+
+    if (!actionWasConfirmed) {
+      return;
+    }
+
+    showTechnicianManagementMessage("");
+
+    statusButton.disabled = true;
+    statusButton.textContent = nextActive
+      ? "Reactivating..."
+      : "Deactivating...";
+
+    try {
+      const data =
+        await window.HomeStrideAPI.request(
+          `/technicians/${technicianId}/status`,
+          {
+            method: "PATCH",
+            body: JSON.stringify({
+              isActive: nextActive
+            })
+          }
+        );
+
+      technician.isActive = nextActive;
+
+      technician.availabilityStatus =
+        nextActive ? "available" : "unavailable";
+
+      renderTechnicians();
+
+      const updatedCard =
+        adminTechnicianGrid.querySelector(
+          `[data-technician-card="${technicianId}"]`
+        );
+
+      showTechnicianCardMessage(
+        updatedCard,
+        data.message,
+        "is-success"
+      );
+    } catch (error) {
+      showTechnicianCardMessage(
+        technicianCard,
+        error.message,
+        "is-error"
+      );
+
+      statusButton.disabled = false;
+      statusButton.textContent = nextActive
+        ? "Reactivate"
+        : "Deactivate";
     }
   }
 );

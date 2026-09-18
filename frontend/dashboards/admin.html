@@ -275,6 +275,13 @@
               Add Technician
             </button>
           </div>
+          
+            <p
+              class="page-message"
+              id="technicianManagementMessage"
+              role="status"
+              aria-live="polite"
+            ></p>
 
           <div
             class="admin-technician-grid"
@@ -382,9 +389,11 @@
       </button>
 
       <p class="eyebrow">Field team account</p>
-      <h2>Add a technician</h2>
+      <h2 id="technicianDialogTitle">
+        Add a technician
+      </h2>
 
-      <p>
+      <p id="technicianDialogDescription">
         Create the technician’s account and select the
         services they are qualified to handle.
       </p>
@@ -484,7 +493,10 @@
           ></small>
         </div>
 
-        <div class="form-field">
+        <div
+          class="form-field"
+          id="technicianPasswordField"
+        >
           <label for="technicianPassword">
             Temporary password
           </label>
@@ -502,6 +514,31 @@
             id="technicianPasswordError"
           ></small>
         </div>
+      </div>
+
+      <!-- Technician availability field -->
+      <div
+        class="form-field"
+        id="technicianAvailabilityField"
+        hidden
+      >
+        <label for="technicianAvailability">
+          Availability status
+        </label>
+
+        <select
+          id="technicianAvailability"
+          name="availabilityStatus"
+        >
+          <option value="available">Available</option>
+          <option value="assigned">Assigned</option>
+          <option value="unavailable">Unavailable</option>
+        </select>
+
+        <small
+          class="field-error"
+          id="technicianAvailabilityError"
+        ></small>
       </div>
 
       <fieldset class="technician-skills-fieldset">
